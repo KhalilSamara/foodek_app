@@ -6,15 +6,23 @@ import 'custom_text.dart';
 PreferredSizeWidget AppBarWidget({required BuildContext context}) {
   return AppBar(
     automaticallyImplyLeading: false,
+    forceMaterialTransparency: true,
     title: Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         children: [
-          _buildIconContainer(
-            context: context,
-            icon: Icons.location_on_outlined,
-            containerColor: AppColors.light_green,
-            iconColor: AppColors.green,
+          Container(
+            width: responsiveWidth(context, 34),
+            height: responsiveHeight(context, 34),
+            decoration: BoxDecoration(
+              color: AppColors.light_green,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Image.asset(
+              'assets/images/location_icon.png',
+              height: responsiveHeight(context, 18),
+              width: responsiveWidth(context, 18),
+            ),
           ),
           SizedBox(width: 10),
           Column(

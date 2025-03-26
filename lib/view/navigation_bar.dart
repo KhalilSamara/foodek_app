@@ -15,7 +15,6 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   int _selectedIndex = 0;
   bool _showCart = false;
 
-  // List of all screens corresponding to navigation items
   final List<Widget> _screens = [
     HomeScreen(),
     FavoritesScreen(),
@@ -26,7 +25,7 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      _showCart = false; // Hide cart when selecting other tabs
+      _showCart = false;
     });
   }
 
