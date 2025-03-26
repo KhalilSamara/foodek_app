@@ -27,7 +27,7 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
         decoration: isUnderlined ? TextDecoration.underline : null,
         fontSize: size ?? 20,
-        color: color ?? AppColors.text,
+        color: color ?? Colors.black,
         fontWeight: weight ?? FontWeight.w500,
       ),
     );
