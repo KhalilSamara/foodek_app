@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
 import 'custom_text.dart';
@@ -18,10 +19,11 @@ PreferredSizeWidget AppBarWidget({required BuildContext context}) {
               color: AppColors.light_green,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Image.asset(
-              'assets/images/location_icon.png',
+            child: SvgPicture.asset(
+              'assets/images/location.svg',
               height: responsiveHeight(context, 18),
               width: responsiveWidth(context, 18),
+              color: AppColors.green,
             ),
           ),
           SizedBox(width: 10),
@@ -47,31 +49,22 @@ PreferredSizeWidget AppBarWidget({required BuildContext context}) {
             ],
           ),
           Spacer(),
-          _buildIconContainer(
-            context: context,
-            icon: Icons.notifications_none_rounded,
-            containerColor: AppColors.off_white,
-            iconColor: Colors.black,
+          Container(
+            width: responsiveWidth(context, 34),
+            height: responsiveHeight(context, 34),
+            decoration: BoxDecoration(
+              color: AppColors.off_white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: SvgPicture.asset(
+              'assets/images/bell.svg',
+              height: responsiveHeight(context, 18),
+              width: responsiveWidth(context, 18),
+              color: AppColors.green,
+            ),
           ),
         ],
       ),
     ),
-  );
-}
-
-Widget _buildIconContainer({
-  required BuildContext context,
-  required IconData icon,
-  required Color iconColor,
-  required Color containerColor,
-}) {
-  return Container(
-    width: responsiveWidth(context, 34),
-    height: responsiveHeight(context, 34),
-    decoration: BoxDecoration(
-      color: containerColor,
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Icon(icon, color: iconColor),
   );
 }
