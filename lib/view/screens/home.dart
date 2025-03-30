@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/core/util/colors.dart';
 import 'package:foodek_app/core/util/responsive.dart';
 import 'package:foodek_app/view/widgets/appbar_widget.dart';
+import 'package:foodek_app/view/widgets/banner_widget.dart';
 import 'package:foodek_app/view/widgets/custom_gradient_button.dart';
 import 'package:foodek_app/view/widgets/custom_text.dart';
 import '../widgets/item_widget.dart';
@@ -101,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildPageView(),
+        buildBanner(),
         SizedBox(height: responsiveHeight(context, 5)),
         buildTopRated(),
         SizedBox(height: responsiveHeight(context, 12)),
@@ -215,10 +216,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget buildPageView() {
-    final ValueNotifier<int> currentPageNotifier = ValueNotifier<int>(0);
-    final PageController pageController = PageController();
-    List<Map> saleData = [
+  Widget buildBanner() {
+    List<Map<String, String>> saleData = [
       {
         "title": "Experience our delicious new dish",
         "subtitle": "30% OFF",
@@ -236,91 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     ];
 
-    return Column(
-      children: [
-        Container(
-          width: responsiveWidth(context, 370),
-          height: responsiveHeight(context, 134),
-          decoration: BoxDecoration(
-            color: AppColors.green,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: SizedBox(
-            child: PageView(
-              controller: pageController,
-              onPageChanged: (index) {
-                currentPageNotifier.value = index;
-              },
-              children: List.generate(saleData.length, (index) {
-                return Row(
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 16.w),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CustomText(
-                              text: saleData[index]['title'],
-                              weight: FontWeight.w400,
-                              color: Colors.white,
-                              size: 16,
-                            ),
-                            CustomText(
-                              text: saleData[index]['subtitle'],
-                              weight: FontWeight.w700,
-                              color: Colors.white,
-                              size: 32,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 20.w),
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(12),
-                        bottomRight: Radius.circular(12),
-                      ),
-                      child: Image.asset(
-                        saleData[index]['path'],
-                        height: responsiveHeight(context, 141),
-                        width: responsiveWidth(context, 183),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
-                );
-              }),
-            ),
-          ),
-        ),
-        SizedBox(height: 5),
-        ValueListenableBuilder<int>(
-          valueListenable: currentPageNotifier,
-          builder: (context, currentPage, _) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                saleData.length,
-                (index) => Container(
-                  width: 20.w,
-                  height: 4.h,
-                  margin: EdgeInsets.symmetric(horizontal: 4.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color:
-                        currentPage == index
-                            ? AppColors.green
-                            : AppColors.light_green,
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      ],
-    );
+    return BannerWidget(saleData: saleData);
   }
 
   Widget buildTopRated() {

@@ -22,9 +22,16 @@ class SearchBarWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              'assets/icons/search.svg',
-              color: AppColors.light_grey,
+            GestureDetector(
+              child: SizedBox(
+                height: responsiveHeight(context, 16),
+                width: responsiveWidth(context, 16),
+                child: SvgPicture.asset(
+                  'assets/icons/search.svg',
+                  color: AppColors.light_grey,
+                ),
+              ),
+              onTap: () {},
             ),
             SizedBox(width: responsiveWidth(context, 8)),
             CustomText(
@@ -34,9 +41,15 @@ class SearchBarWidget extends StatelessWidget {
               alignment: TextAlign.center,
             ),
             Spacer(),
-            SvgPicture.asset(
-              'assets/icons/filter.svg',
-              color: AppColors.light_grey,
+            GestureDetector(
+              child: SizedBox(
+                height: responsiveHeight(context, 16),
+                width: responsiveWidth(context, 16),
+                child: SvgPicture.asset(
+                  'assets/icons/filter.svg',
+                  color: AppColors.light_grey,
+                ),
+              ),
             ),
           ],
         ),

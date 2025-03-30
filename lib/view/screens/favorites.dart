@@ -80,39 +80,42 @@ class FavoritesScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBarWidget(context: context),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 30)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: responsiveHeight(context, 22)),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: responsiveWidth(context, 30),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: responsiveHeight(context, 22)),
 
-            SearchBarWidget(),
-            SizedBox(height: responsiveHeight(context, 30)),
-            CustomText(text: 'Favorites', size: 20, weight: FontWeight.w600),
-            SizedBox(height: responsiveHeight(context, 6)),
-            SizedBox(
-              height: responsiveHeight(context, 560),
-
-              child: GridView.builder(
-                itemCount: items.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: responsiveHeight(context, 11),
-                  crossAxisSpacing: responsiveWidth(context, 6),
-                  mainAxisExtent: responsiveHeight(context, 252),
+              SearchBarWidget(),
+              SizedBox(height: responsiveHeight(context, 30)),
+              CustomText(text: 'Favorites', size: 20, weight: FontWeight.w600),
+              SizedBox(height: responsiveHeight(context, 6)),
+              SizedBox(
+                height: responsiveHeight(context, 585),
+                child: GridView.builder(
+                  itemCount: items.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: responsiveHeight(context, 11),
+                    crossAxisSpacing: responsiveWidth(context, 6),
+                    mainAxisExtent: responsiveHeight(context, 252),
+                  ),
+                  itemBuilder: (context, index) {
+                    return ItemWidget(
+                      path: items[index]['path'],
+                      name: items[index]['name'],
+                      description: items[index]['description'],
+                      price: items[index]['price'],
+                    );
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  return ItemWidget(
-                    path: items[index]['path'],
-                    name: items[index]['name'],
-                    description: items[index]['description'],
-                    price: items[index]['price'],
-                  );
-                },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

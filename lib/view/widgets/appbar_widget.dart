@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
 import 'custom_text.dart';
+import 'notification_list.dart';
 
 PreferredSizeWidget AppBarWidget({required BuildContext context}) {
   return AppBar(
@@ -49,15 +50,25 @@ PreferredSizeWidget AppBarWidget({required BuildContext context}) {
             ],
           ),
           Spacer(),
-          Container(
-            padding: EdgeInsets.all(5),
-            width: responsiveWidth(context, 34),
-            height: responsiveHeight(context, 34),
-            decoration: BoxDecoration(
-              color: AppColors.off_white,
-              borderRadius: BorderRadius.circular(10),
+          InkWell(
+            child: Container(
+              padding: EdgeInsets.all(5),
+              width: responsiveWidth(context, 34),
+              height: responsiveHeight(context, 34),
+              decoration: BoxDecoration(
+                color: AppColors.off_white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: SvgPicture.asset('assets/icons/bell.svg'),
             ),
-            child: SvgPicture.asset('assets/icons/bell.svg'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationsList(type: ''),
+                ),
+              );
+            },
           ),
         ],
       ),

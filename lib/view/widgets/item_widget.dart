@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
+import '../screens/item_details.dart';
 import 'custom_text.dart';
 
 class ItemWidget extends StatelessWidget {
@@ -111,6 +112,14 @@ class ItemWidget extends StatelessWidget {
                         weight: FontWeight.w400,
                         color: Colors.white,
                       ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ItemDetailsScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
