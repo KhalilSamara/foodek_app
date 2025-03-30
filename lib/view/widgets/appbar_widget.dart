@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
 import 'custom_text.dart';
@@ -13,6 +14,7 @@ PreferredSizeWidget AppBarWidget({required BuildContext context}) {
       child: Row(
         children: [
           Container(
+            padding: EdgeInsets.all(5),
             width: responsiveWidth(context, 34),
             height: responsiveHeight(context, 34),
             decoration: BoxDecoration(
@@ -20,13 +22,11 @@ PreferredSizeWidget AppBarWidget({required BuildContext context}) {
               borderRadius: BorderRadius.circular(10),
             ),
             child: SvgPicture.asset(
-              'assets/images/location.svg',
-              height: responsiveHeight(context, 18),
-              width: responsiveWidth(context, 18),
+              'assets/icons/location.svg',
               color: AppColors.green,
             ),
           ),
-          SizedBox(width: 10),
+          SizedBox(width: responsiveWidth(context, 10)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -50,18 +50,14 @@ PreferredSizeWidget AppBarWidget({required BuildContext context}) {
           ),
           Spacer(),
           Container(
+            padding: EdgeInsets.all(5),
             width: responsiveWidth(context, 34),
             height: responsiveHeight(context, 34),
             decoration: BoxDecoration(
               color: AppColors.off_white,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: SvgPicture.asset(
-              'assets/images/bell.svg',
-              height: responsiveHeight(context, 18),
-              width: responsiveWidth(context, 18),
-              color: AppColors.green,
-            ),
+            child: SvgPicture.asset('assets/icons/bell.svg'),
           ),
         ],
       ),

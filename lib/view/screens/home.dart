@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/core/util/colors.dart';
 import 'package:foodek_app/core/util/responsive.dart';
 import 'package:foodek_app/view/widgets/appbar_widget.dart';
+import 'package:foodek_app/view/widgets/custom_gradient_button.dart';
 import 'package:foodek_app/view/widgets/custom_text.dart';
-
+import '../widgets/item_widget.dart';
 import '../widgets/search_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,23 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBarWidget(context: context),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: responsiveHeight(context, 20)),
             SearchBarWidget(),
             SizedBox(height: responsiveHeight(context, 30)),
             buildTabs(),
             SizedBox(height: responsiveHeight(context, 22)),
-            buildPageView(),
-            SizedBox(height: responsiveHeight(context, 5)),
-            buildTopRatedLabel(),
-            SizedBox(height: responsiveHeight(context, 13)),
-            buildTopRated(),
-            SizedBox(height: responsiveHeight(context, 12)),
-            buildRecommendedLabel(),
-            SizedBox(height: responsiveHeight(context, 15)),
-            buildRecommended(),
-            SizedBox(height: responsiveHeight(context, 40)),
+            buildPage(),
           ],
         ),
       ),
@@ -93,6 +84,133 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget buildPage() {
+    switch (selectedIndex) {
+      case 0:
+        return buildAll();
+      default:
+        return buildCategory(index: 1);
+    }
+  }
+
+  Widget buildAll() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildPageView(),
+        SizedBox(height: responsiveHeight(context, 5)),
+        buildTopRated(),
+        SizedBox(height: responsiveHeight(context, 12)),
+        buildRecommended(),
+        SizedBox(height: responsiveHeight(context, 40)),
+      ],
+    );
+  }
+
+  Widget buildCategory({required int index}) {
+    final List<Map> items = [
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+      {
+        "name": "Pepperoni pizza",
+        "description":
+            "Pepperoni pizza, Margarita Pizza Margherita Italian cuisine Tomato",
+        "price": "29",
+        "path": "assets/images/pizza.png",
+        "category": "1",
+      },
+    ];
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 33)),
+      child: Column(
+        children: [
+          SizedBox(
+            height: responsiveHeight(context, 560),
+            child: GridView.builder(
+              itemCount: items.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: responsiveHeight(context, 11),
+                crossAxisSpacing: responsiveWidth(context, 6),
+                mainAxisExtent: responsiveHeight(context, 252),
+              ),
+              itemBuilder: (context, index) {
+                return ItemWidget(
+                  path: items[index]['path'],
+                  name: items[index]['name'],
+                  description: items[index]['description'],
+                  price: items[index]['price'],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -205,18 +323,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget buildTopRatedLabel() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 30)),
-      child: CustomText(
-        text: "Top Rated",
-        alignment: TextAlign.start,
-        size: 20,
-        weight: FontWeight.w600,
-      ),
-    );
-  }
-
   Widget buildTopRated() {
     List<Map> topRatedData = [
       {
@@ -249,140 +355,133 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     ];
 
-    return SizedBox(
-      height: responsiveHeight(context, 209),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: topRatedData.length,
-        padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 25)),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {},
-            child: Container(
-              margin: EdgeInsets.only(right: responsiveWidth(context, 17)),
-              width: responsiveWidth(context, 155),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.light_green),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 8,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.star, color: Colors.orange, size: 16),
-                        CustomText(text: "3.8", size: 12),
-                      ],
-                    ),
-                    SizedBox(height: responsiveHeight(context, 4)),
-                    Center(
-                      child: SizedBox(
-                        width: responsiveWidth(context, 87),
-                        height: responsiveHeight(context, 70),
-                        child: Image.asset(
-                          topRatedData[index]['path'],
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-
-                    // Title
-                    CustomText(
-                      text: topRatedData[index]['title'],
-                      size: 18,
-                      weight: FontWeight.w500,
-                      alignment: TextAlign.start,
-                    ),
-
-                    // Description
-                    CustomText(
-                      text: topRatedData[index]['description'],
-                      size: 11,
-                      weight: FontWeight.w400,
-                      alignment: TextAlign.start,
-                      color: AppColors.grey,
-                    ),
-
-                    // Price and Add Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "\$20.",
-                                style: TextStyle(
-                                  color: AppColors.green,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text: '00',
-                                style: TextStyle(
-                                  color: AppColors.green,
-                                  fontSize: 10.sp,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: responsiveHeight(context, 24),
-                          width: responsiveWidth(context, 24),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.green,
-                          ),
-                          child: Icon(Icons.add, color: Colors.white, size: 18),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: responsiveWidth(context, 30),
+          ),
+          child: CustomText(
+            text: "Top Rated",
+            alignment: TextAlign.start,
+            size: 20,
+            weight: FontWeight.w600,
+          ),
+        ),
+        SizedBox(height: responsiveHeight(context, 13)),
+        SizedBox(
+          height: responsiveHeight(context, 209),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: topRatedData.length,
+            padding: EdgeInsets.symmetric(
+              horizontal: responsiveWidth(context, 25),
             ),
-          );
-        },
-      ),
-    );
-  }
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {},
+                child: Container(
+                  margin: EdgeInsets.only(right: responsiveWidth(context, 17)),
+                  width: responsiveWidth(context, 155),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppColors.light_green),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 8,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.star, color: Colors.orange, size: 16),
+                            CustomText(text: "3.8", size: 12),
+                          ],
+                        ),
+                        SizedBox(height: responsiveHeight(context, 4)),
+                        Center(
+                          child: SizedBox(
+                            width: responsiveWidth(context, 87),
+                            height: responsiveHeight(context, 70),
+                            child: Image.asset(
+                              topRatedData[index]['path'],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
 
-  Widget buildRecommendedLabel() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 30)),
-      child: Row(
-        children: [
-          CustomText(
-            text: "Recommended",
-            alignment: TextAlign.start,
-            size: 16,
-            weight: FontWeight.w600,
+                        // Title
+                        CustomText(
+                          text: topRatedData[index]['title'],
+                          size: 18,
+                          weight: FontWeight.w500,
+                          alignment: TextAlign.start,
+                        ),
+
+                        // Description
+                        CustomText(
+                          text: topRatedData[index]['description'],
+                          size: 11,
+                          weight: FontWeight.w400,
+                          alignment: TextAlign.start,
+                          color: AppColors.grey,
+                        ),
+
+                        // Price and Add Button
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: "\$20.",
+                                    style: TextStyle(
+                                      color: AppColors.green,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '00',
+                                    style: TextStyle(
+                                      color: AppColors.green,
+                                      fontSize: 10.sp,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: responsiveHeight(context, 24),
+                              width: responsiveWidth(context, 24),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.green,
+                              ),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
-          Spacer(),
-          CustomText(
-            text: "View All",
-            alignment: TextAlign.start,
-            size: 12,
-            weight: FontWeight.w600,
-            color: AppColors.green,
-          ),
-          SizedBox(width: responsiveWidth(context, 10)),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            color: AppColors.green,
-            size: 12,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -397,61 +496,98 @@ class _HomeScreenState extends State<HomeScreen> {
       {"path": "assets/images/sushi.png", "price": "108"},
     ];
 
-    return SizedBox(
-      height: responsiveHeight(context, 108),
-      child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 25)),
-        scrollDirection: Axis.horizontal,
-        itemCount: recommendedData.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {},
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      right: responsiveWidth(context, 17),
-                    ),
-                    width: responsiveWidth(context, 72),
-                    height: responsiveHeight(context, 108),
-                    child: Image.asset(
-                      recommendedData[index]['path'],
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  bottom: 14,
-                  right: 16,
-                  child: Container(
-                    height: responsiveHeight(context, 16),
-                    width: responsiveWidth(context, 38),
-                    //padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: AppColors.green,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        bottomLeft: Radius.circular(30),
-                      ),
-                    ),
-                    child: Center(
-                      child: CustomText(
-                        text: "\$${recommendedData[index]['price']}",
-                        size: 12,
-                        color: Colors.white,
-                        weight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: responsiveWidth(context, 30),
+          ),
+          child: Row(
+            children: [
+              CustomText(
+                text: "Recommended",
+                alignment: TextAlign.start,
+                size: 16,
+                weight: FontWeight.w600,
+              ),
+              Spacer(),
+              CustomText(
+                text: "View All",
+                alignment: TextAlign.start,
+                size: 12,
+                weight: FontWeight.w600,
+                color: AppColors.green,
+              ),
+              SizedBox(width: responsiveWidth(context, 10)),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColors.green,
+                size: 12,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: responsiveHeight(context, 15)),
+        SizedBox(
+          height: responsiveHeight(context, 108),
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(
+              horizontal: responsiveWidth(context, 25),
             ),
-          );
-        },
-      ),
+            scrollDirection: Axis.horizontal,
+            itemCount: recommendedData.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {},
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          right: responsiveWidth(context, 17),
+                        ),
+                        width: responsiveWidth(context, 72),
+                        height: responsiveHeight(context, 108),
+                        child: Image.asset(
+                          recommendedData[index]['path'],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+
+                    Positioned(
+                      bottom: 14,
+                      right: 16,
+                      child: Container(
+                        height: responsiveHeight(context, 16),
+                        width: responsiveWidth(context, 38),
+                        //padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: AppColors.green,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            bottomLeft: Radius.circular(30),
+                          ),
+                        ),
+                        child: Center(
+                          child: CustomText(
+                            text: "\$${recommendedData[index]['price']}",
+                            size: 12,
+                            color: Colors.white,
+                            weight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
