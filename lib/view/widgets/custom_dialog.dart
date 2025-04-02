@@ -25,7 +25,7 @@ void showRemoveFromFavDialog(BuildContext context) {
                 ),
               ),
               SizedBox(height: 24),
-              BottomWidget(dataName: "Yes", onTap: () {}, colors: Colors.white),
+              ButtonWidget(dataName: "Yes", onTap: () {}, colors: Colors.white),
             ],
           ),
         ),

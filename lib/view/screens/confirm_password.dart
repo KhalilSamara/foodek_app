@@ -109,7 +109,7 @@ class ConfirmPassScreen extends StatelessWidget {
                           hintText: "Confirm your password",
                         ),
                         SizedBox(height: 25),
-                        BottomWidget(
+                        ButtonWidget(
                           dataName: "Update Password",
                           colors: Colors.white,
                           onTap: () {

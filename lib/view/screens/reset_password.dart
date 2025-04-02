@@ -137,7 +137,7 @@ class ResetPassScreen extends StatelessWidget {
                           hintText: "Enter your email",
                         ),
                         SizedBox(height: 24),
-                        BottomWidget(
+                        ButtonWidget(
                           dataName: "Send",
                           colors: Colors.white,
                           onTap: () {

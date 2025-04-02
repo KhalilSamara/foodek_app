@@ -165,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 16.h),
 
                         // Login Button
-                        BottomWidget(
+                        ButtonWidget(
                           dataName: "Login",
                           onTap: () {
                             Navigator.push(

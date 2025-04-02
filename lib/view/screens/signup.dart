@@ -150,7 +150,7 @@ class SignupScreen extends StatelessWidget {
                           keyboardType: TextInputType.visiblePassword,
                         ),
                         SizedBox(height: 30),
-                        BottomWidget(
+                        ButtonWidget(
                           colors: Colors.white,
                           dataName: "Register",
                           onTap: () {},

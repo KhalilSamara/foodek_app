@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodek_app/core/util/colors.dart';
 
-class BottomWidget extends StatelessWidget {
-  const BottomWidget({
+class ButtonWidget extends StatelessWidget {
+  const ButtonWidget({
     super.key,
     required this.dataName,
     this.onTap,
@@ -19,7 +20,7 @@ class BottomWidget extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xFF25AE4B),
+          backgroundColor: AppColors.green,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

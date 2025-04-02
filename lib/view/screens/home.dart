@@ -4,7 +4,6 @@ import 'package:foodek_app/core/util/colors.dart';
 import 'package:foodek_app/core/util/responsive.dart';
 import 'package:foodek_app/view/widgets/appbar_widget.dart';
 import 'package:foodek_app/view/widgets/banner_widget.dart';
-import 'package:foodek_app/view/widgets/custom_gradient_button.dart';
 import 'package:foodek_app/view/widgets/custom_text.dart';
 import '../widgets/item_widget.dart';
 import '../widgets/search_widget.dart';

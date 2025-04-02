@@ -46,7 +46,7 @@ void showVerifyDialog(BuildContext context) {
               ),
               SizedBox(height: 26),
 
-              BottomWidget(
+              ButtonWidget(
                 dataName: "Verify",
                 colors: Colors.white,
                 onTap: () {

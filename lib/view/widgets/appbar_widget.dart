@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
 import 'custom_text.dart';
-import 'notification_list.dart';
+import 'notification_wiget.dart';
 
 PreferredSizeWidget AppBarWidget({required BuildContext context}) {
   return AppBar(
@@ -62,12 +61,7 @@ PreferredSizeWidget AppBarWidget({required BuildContext context}) {
               child: SvgPicture.asset('assets/icons/bell.svg'),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NotificationsList(type: ''),
-                ),
-              );
+              showNotifications(context);
             },
           ),
         ],
