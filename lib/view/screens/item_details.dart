@@ -96,7 +96,23 @@ class ItemDetailsScreen extends StatelessWidget {
               children: [
                 SpicySlider(),
                 SizedBox(width: responsiveWidth(context, 40)),
-                QuantityWidget(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: CustomText(
+                        text: "Quantity",
+                        color: AppColors.dark_grey,
+                        size: 12,
+                        weight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: responsiveHeight(context, 20)),
+                    QuantityWidget(),
+                  ],
+                ),
               ],
             ),
           ),
@@ -106,7 +122,7 @@ class ItemDetailsScreen extends StatelessWidget {
               vertical: responsiveHeight(context, 39),
             ),
             child: ButtonWidget(
-              dataName: "Login",
+              dataName: "Add To Cart",
               onTap: () {
                 Navigator.push(
                   context,

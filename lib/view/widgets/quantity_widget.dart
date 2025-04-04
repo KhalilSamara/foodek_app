@@ -6,65 +6,93 @@ import '../../core/util/responsive.dart';
 import 'custom_text.dart';
 
 class QuantityWidget extends StatefulWidget {
-  const QuantityWidget({super.key});
+  final double squareSize;
+  final double squareRadius;
+  final double textSize;
+  final double fullWidth;
+  final Color? subtractColor;
+  const QuantityWidget({
+    super.key,
+    this.squareSize = 32,
+    this.textSize = 20,
+    this.fullWidth = 150,
+    this.squareRadius = 12,
+    this.subtractColor,
+  });
 
   @override
   State<QuantityWidget> createState() => _QuantityWidgetState();
 }
 
 class _QuantityWidgetState extends State<QuantityWidget> {
+  int _quantity = 1;
+
+  void _increaseQuantity() {
+    setState(() {
+      _quantity++;
+    });
+  }
+
+  void _decreaseQuantity() {
+    if (_quantity > 1) {
+      setState(() {
+        _quantity--;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: responsiveWidth(context, 150),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: CustomText(
-                  text: "Quantity",
-                  color: AppColors.dark_grey,
-                  size: 12,
+          width: responsiveWidth(context, widget.fullWidth),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: responsiveWidth(context, 20),
+            ),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: _decreaseQuantity,
+                  child: Container(
+                    height: responsiveHeight(context, widget.squareSize),
+                    width: responsiveWidth(context, widget.squareSize),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(widget.squareRadius),
+                      border: Border.all(
+                        color:
+                            widget.subtractColor != null
+                                ? AppColors.light_green
+                                : AppColors.mid_green,
+                      ),
+                      color: widget.subtractColor ?? AppColors.mid_green,
+                    ),
+                    child: Icon(Icons.remove, color: AppColors.mid_green),
+                  ),
+                ),
+                Spacer(),
+                CustomText(
+                  text: "$_quantity",
                   weight: FontWeight.w500,
+                  size: widget.textSize,
                 ),
-              ),
-              SizedBox(height: responsiveHeight(context, 20)),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: responsiveWidth(context, 20),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      height: responsiveHeight(context, 32),
-                      width: responsiveWidth(context, 32),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.mid_green),
-                      ),
-                      child: Icon(Icons.remove, color: AppColors.mid_green),
+                Spacer(),
+                GestureDetector(
+                  onTap: _increaseQuantity,
+                  child: Container(
+                    height: responsiveHeight(context, widget.squareSize),
+                    width: responsiveWidth(context, widget.squareSize),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(widget.squareRadius),
+                      color: AppColors.mid_green,
                     ),
-                    Spacer(),
-                    CustomText(text: "1", weight: FontWeight.w500, size: 20.sp),
-                    Spacer(),
-                    Container(
-                      height: responsiveHeight(context, 32),
-                      width: responsiveWidth(context, 32),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.mid_green,
-                      ),
-                      child: Icon(Icons.add, color: Colors.white),
-                    ),
-                  ],
+                    child: const Icon(Icons.add, color: Colors.white),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
