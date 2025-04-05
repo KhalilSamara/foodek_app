@@ -199,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.notifications_none_rounded, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Language",
+                        text: "Push Notifications",
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -235,7 +235,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.notifications_none_rounded, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Language",
+                        text: "Promotional Notifications",
                         size: 14,
                         weight: FontWeight.w500,
                       ),

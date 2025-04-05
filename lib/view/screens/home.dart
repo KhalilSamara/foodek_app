@@ -56,7 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           bool isSelected = index == selectedIndex;
-
           return GestureDetector(
             onTap: () {
               setState(() {

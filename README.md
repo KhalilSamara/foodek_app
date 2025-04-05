@@ -1,16 +1,36 @@
-# foodek_app
+# Foodek
 
-A new Flutter project.
 
-## Getting Started
+## Main TouchPoints
+- Mock responses were implemented in several pages to simulate API behavior
+- Widgets are split into two categories:
+  - Widgets that only used in one page are implemented as methods in the page itself
+  - Widgets that are used in several pages are implemented as separate classes in the widgets directory
+- Most colors are implemented from the appColors class to ensure easy changes
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Design Recommendations
+- Our custom Navigation Bar ensures functionality and is more aesthetically pleasing
+- Tabs in history & cart screen are center aligned to look better
+- Banner in Home Screen navigates automatically each 3 seconds
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Additional Notes
+- Background images in Cart Screen & Home Screen Banner are not implemented as the extraction from Figma is not possible
+
+
+## Screens
+- Section 1 ✅
+- Section 2 ✅
+- Section 3 ✅
+- Section 6
+  - Cart & History Screen ✅
+  - Cart & History Empty Screen ❌
+- Section 4 ❌
+- Section 5
+  - Profile Screen ✅
+  - Map Screen ❌
+  - Chat Screen ❌
+  - Order Details Screen ❌
+
+

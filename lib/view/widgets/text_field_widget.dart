@@ -10,7 +10,7 @@ class TextFieldWidget extends StatelessWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
-  final Color borderColor; // NEW: Customizable border color
+  final Color borderColor;
 
   const TextFieldWidget({
     super.key,
@@ -22,7 +22,7 @@ class TextFieldWidget extends StatelessWidget {
     this.prefixIcon,
     this.keyboardType,
     this.suffixIcon,
-    this.borderColor = Colors.black, // Default to black
+    this.borderColor = Colors.black,
   });
 
   @override
