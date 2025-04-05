@@ -1,12 +1,12 @@
 # Foodek
 
-
 ## Main TouchPoints
 - Mock responses were implemented in several pages to simulate API behavior
 - Widgets are split into two categories:
   - Widgets that only used in one page are implemented as methods in the page itself
   - Widgets that are used in several pages are implemented as separate classes in the widgets directory
 - Most colors are implemented from the appColors class to ensure easy changes
+- All screens are responsive to screen sizes using extension.dart & responsive.dart custom classes
 
 
 ## Design Recommendations
