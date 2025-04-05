@@ -33,8 +33,10 @@
   - Chat Screen ❌
   - Order Details Screen ❌
 
+---------------------------------
 ### Contact Us
 - Khalil Samara - 0797035990
 - Tasneem Smadi 0792198244
+---------------------------------
 
 
