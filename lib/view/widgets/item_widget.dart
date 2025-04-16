@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
@@ -43,28 +44,51 @@ class ItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: responsiveHeight(context, 89),
-                width: responsiveWidth(context, 89),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    center: Alignment.center,
-                    radius: 0.8,
-                    colors: [Color(0xffffffff), AppColors.grey],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    height: responsiveHeight(context, 89),
+                    width: responsiveWidth(context, 89),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        center: Alignment.center,
+                        radius: 0.8,
+                        colors: [Color(0xffffffff), AppColors.grey],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(7.0),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(path),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(7.0),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(path),
-                    backgroundColor: Colors.transparent,
+                  SizedBox(width: responsiveWidth(context, 8)),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      height: responsiveHeight(context, 35),
+                      width: responsiveWidth(context, 35),
+                      decoration: BoxDecoration(
+                        color: AppColors.light_green,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(9),
+                        child: SvgPicture.asset(
+                          "assets/icons/heart.svg",
+                          // width: responsiveWidth(context, 13),
+                          // height: responsiveHeight(context, 12),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-              // SizedBox(height: responsiveHeight(context, 20)),
               CustomText(text: name, size: 14, weight: FontWeight.w600),
-              // SizedBox(height: responsiveHeight(context, 15)),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: responsiveWidth(context, 13),

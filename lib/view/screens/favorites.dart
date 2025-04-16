@@ -89,7 +89,6 @@ class FavoritesScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: responsiveHeight(context, 22)),
-
               SearchBarWidget(),
               SizedBox(height: responsiveHeight(context, 30)),
               CustomText(text: 'Favorites', size: 20, weight: FontWeight.w600),

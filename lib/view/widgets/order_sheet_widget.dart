@@ -7,7 +7,8 @@ import 'custom_text.dart';
 
 class OrderSheetWidget extends StatelessWidget {
   final BuildContext context;
-  const OrderSheetWidget({super.key, required this.context});
+  final void Function()? onTap;
+  const OrderSheetWidget({super.key, required this.context, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class OrderSheetWidget extends StatelessWidget {
               SizedBox(height: responsiveHeight(context, 10)),
               ButtonWidget(
                 dataName: "Place My Order",
-                onTap: () {},
+                onTap: onTap,
                 colors: AppColors.green,
                 backgroundColor: Colors.white,
               ),
