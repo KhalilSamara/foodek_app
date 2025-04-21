@@ -6,24 +6,30 @@ class ButtonWidget extends StatelessWidget {
   final void Function()? onTap;
   final Color? colors;
   final Color? backgroundColor;
+  final double height;
+  final double width;
+  final double radius;
   const ButtonWidget({
     super.key,
     required this.dataName,
     this.onTap,
     this.colors,
     this.backgroundColor,
+    this.height = 50,
+    this.width = double.infinity,
+    this.radius = 10,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: 50,
+      width: width,
+      height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor ?? AppColors.green,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(radius),
           ),
         ),
         onPressed: onTap,

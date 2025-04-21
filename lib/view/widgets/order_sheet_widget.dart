@@ -8,12 +8,20 @@ import 'custom_text.dart';
 class OrderSheetWidget extends StatelessWidget {
   final BuildContext context;
   final void Function()? onTap;
-  const OrderSheetWidget({super.key, required this.context, this.onTap});
+  final double padding;
+  const OrderSheetWidget({
+    super.key,
+    required this.context,
+    this.onTap,
+    this.padding = 20,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 20)),
+      padding: EdgeInsets.symmetric(
+        horizontal: responsiveWidth(context, padding),
+      ),
       child: Container(
         height: responsiveHeight(context, 206),
         width: responsiveWidth(context, 387),

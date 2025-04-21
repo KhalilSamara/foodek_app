@@ -4,6 +4,7 @@ import 'package:foodek_app/view/screens/favorites.dart';
 import 'package:foodek_app/view/screens/history.dart';
 import 'package:foodek_app/view/screens/home.dart';
 import 'package:foodek_app/view/screens/profile.dart';
+import 'package:foodek_app/view/screens/track.dart';
 import '../core/util/colors.dart';
 
 class NavigationBarScreen extends StatefulWidget {
@@ -18,7 +19,8 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     FavoritesScreen(),
-    HistoryScreen(),
+    //HistoryScreen(),
+    TrackScreen(),
     ProfileScreen(),
   ];
 

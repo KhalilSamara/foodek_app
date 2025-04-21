@@ -11,6 +11,8 @@ class TextFieldWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
   final Color borderColor;
+  final double height;
+  final double width;
 
   const TextFieldWidget({
     super.key,
@@ -23,13 +25,15 @@ class TextFieldWidget extends StatelessWidget {
     this.keyboardType,
     this.suffixIcon,
     this.borderColor = Colors.black,
+    this.height = 46,
+    this.width = 356,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: responsiveHeight(context, 46),
-      width: responsiveWidth(context, 356),
+      height: responsiveHeight(context, height),
+      width: responsiveWidth(context, width),
       child: TextField(
         obscureText: obscureText,
         controller: textEditingController,
