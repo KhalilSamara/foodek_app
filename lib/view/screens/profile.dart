@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodek_app/core/util/responsive.dart';
@@ -127,15 +128,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.language, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Language",
+                        text: tr("language"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
                       Spacer(),
-                      CustomText(
-                        text: "عربية",
-                        size: 14,
-                        color: AppColors.grey,
+                      Flexible(
+                        child: SizedBox(
+                          height: 25,
+                          child: DropdownButton<String>(
+                            value: context.locale.languageCode,
+                            isExpanded: true,
+                            icon: SizedBox.shrink(), // Hides the dropdown arrow
+                            underline: SizedBox(), // Removes the underline
+                            dropdownColor: Colors.white,
+                            alignment:
+                                Alignment.centerRight, // aligns selected value
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                context.setLocale(Locale(newValue));
+                              }
+                            },
+                            selectedItemBuilder: (BuildContext context) {
+                              return ['en', 'ar'].map((lang) {
+                                return Align(
+                                  alignment: Alignment.centerRight,
+                                  child: CustomText(
+                                    text: lang == 'en' ? 'English' : 'عربية',
+                                    size: 14,
+                                    weight: FontWeight.w500,
+                                  ),
+                                );
+                              }).toList();
+                            },
+                            items: [
+                              DropdownMenuItem(
+                                value: 'en',
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: CustomText(
+                                    text: "English",
+                                    size: 14,
+                                    weight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 'ar',
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: CustomText(
+                                    text: "عربية",
+                                    size: 14,
+                                    weight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -276,7 +327,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           width: responsiveWidth(context, 380),
           child: Material(
             borderRadius: BorderRadius.circular(12),
-            elevation: 1,
+            // elevation: 1,
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Column(

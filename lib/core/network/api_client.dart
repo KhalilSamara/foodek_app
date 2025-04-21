@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../const/const_values.dart';
 
-class ApiClint<T> {
+class ApiClient<T> {
   static Future<List<T>> getDataList<T>({
     required String endpoint,
     T Function(dynamic data)? fromJsonT,

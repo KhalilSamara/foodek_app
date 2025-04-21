@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:foodek_app/core/util/extension.dart';
 import 'package:foodek_app/core/util/responsive.dart';
@@ -6,6 +7,7 @@ import 'package:foodek_app/view/widgets/custom_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../core/util/colors.dart';
+import '../../translations/locale_keys.g.dart';
 import '../widgets/custom_gradient_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -138,7 +140,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SizedBox(height: responsiveHeight(context, 10)),
               CustomText(text: subtitle, size: 16, weight: FontWeight.w400),
               SizedBox(height: responsiveHeight(context, 90)),
-              CustomGradientButton(text: 'Continue', onTap: () {}),
+              CustomGradientButton(
+                text: LocaleKeys.Continue.tr(),
+                onTap: () {},
+              ),
               Spacer(flex: 2),
             ],
           ),
