@@ -1,7 +1,7 @@
 {
   "Continue": "Continue",
   "Welcome To Sahlah": "Welcome To Sahlah",
-  "Enjoy At Fast and Smooth Food Delivery At Your Doorstep": "Enjoy Fast and Smooth Food Delivery At Your Doorstep",
+  "enjoy_fast_delivery": "Enjoy Fast and Smooth Food Delivery At Your Doorstep",
   "Skip": "Skip",
   "Get Delivery On Time": "Get Delivery On Time",
   "Order Your Favorite Food Within The Palm Of Your Hand And the Zone Of Your Comfort": "Order Your Favorite Food Within The \n Palm Of Your Hand And the Zone \nOf Your Comfort",
@@ -132,12 +132,16 @@
   "personal_information": "Personal information",
   "language": "Language",
   "privacy_policy": "Privacy policy",
-  "setting": "Setting",
+  "setting": "Settings",
   "push_notifications": "Push notifications",
   "promotional_notifications": "Promotional notifications",
   "more": "More",
   "help_center": "Help center",
   "log_out": "Log out",
   "address": "Address",
-  "update": "Update"
+  "update": "Update",
+  "turn_on_your_location": "Turn On Your Location",
+  "device_turn_on_location": "To Continue Let Your Device Turn On Location",
+  "yes_turn_on": "Yes Turn It On",
+  "cancel": "Cancel"
 }

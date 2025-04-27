@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -62,10 +63,14 @@ class _BannerWidgetState extends State<BannerWidget> {
             },
             children: List.generate(widget.saleData.length, (index) {
               return Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 16.w),
+                      padding:
+                          context.locale.languageCode == 'ar'
+                              ? EdgeInsets.only(right: 16.w)
+                              : EdgeInsets.only(left: 16.w),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -87,10 +92,17 @@ class _BannerWidgetState extends State<BannerWidget> {
                   ),
                   SizedBox(width: 20.w),
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
+                    borderRadius:
+                        context.locale.languageCode == 'ar'
+                            ? BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomLeft: Radius.circular(12),
+                            )
+                            : BorderRadius.only(
+                              topRight: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
+                            ),
+
                     child: Image.asset(
                       widget.saleData[index]['path']!,
                       height: responsiveHeight(context, 141),

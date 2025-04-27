@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:foodek_app/core/util/extension.dart';
 import 'package:foodek_app/core/util/responsive.dart';
 import 'package:foodek_app/view/screens/get_location.dart';
+import 'package:foodek_app/view/screens/login.dart';
 import 'package:foodek_app/view/widgets/custom_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../core/util/colors.dart';
 import '../../translations/locale_keys.g.dart';
 import '../widgets/custom_gradient_button.dart';
@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 _buildOnboardingContent(
                   'assets/images/onboarding1.png',
                   tr("Welcome To Sahlah"),
-                  tr("Enjoy At Fast and Smooth Food Delivery At Your Doorstep"),
+                  tr("enjoy_fast_delivery"),
                 ),
                 _buildOnboardingContent(
                   'assets/images/onboarding2.png',
@@ -71,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child:
                     currentPosition == 0
                         ? Container()
-                        : CustomText(text: "Skip", size: 16),
+                        : CustomText(text: tr("Skip"), size: 16),
               ),
               SmoothPageIndicator(
                 controller: pageController,
@@ -146,7 +146,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SizedBox(height: responsiveHeight(context, 90)),
               CustomGradientButton(
                 text: LocaleKeys.Continue.tr(),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
+                },
               ),
               Spacer(flex: 2),
             ],

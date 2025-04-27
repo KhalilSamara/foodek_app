@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodek_app/core/util/responsive.dart';
+import 'package:foodek_app/view/screens/onboarding.dart';
 import 'package:foodek_app/view/widgets/bottom_widget.dart';
 import 'package:foodek_app/view/widgets/custom_text.dart';
 
@@ -28,7 +29,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CustomText(text: "Profile", size: 20, weight: FontWeight.w600),
+        title: CustomText(
+          text: tr("profile"),
+          size: 20,
+          weight: FontWeight.w600,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -84,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          height: responsiveHeight(context, 191),
+          height: responsiveHeight(context, 193),
           width: responsiveWidth(context, 380),
           child: Material(
             borderRadius: BorderRadius.circular(12),
@@ -95,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: tr("My Account"),
+                    text: tr("my_account"),
                     size: 16,
                     weight: FontWeight.w500,
                   ),
@@ -115,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(width: responsiveWidth(context, 12)),
                         CustomText(
-                          text: tr("Personal Information"),
+                          text: tr("personal_information"),
                           size: 14,
                           weight: FontWeight.w500,
                         ),
@@ -132,18 +137,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         size: 14,
                         weight: FontWeight.w500,
                       ),
-                      Spacer(),
+                      Spacer(flex: 4),
                       Flexible(
                         child: SizedBox(
                           height: 25,
                           child: DropdownButton<String>(
                             value: context.locale.languageCode,
-                            isExpanded: true,
-                            icon: SizedBox.shrink(), // Hides the dropdown arrow
-                            underline: SizedBox(), // Removes the underline
+                            icon: SizedBox.shrink(),
+                            underline: SizedBox(),
                             dropdownColor: Colors.white,
-                            alignment:
-                                Alignment.centerRight, // aligns selected value
                             onChanged: (String? newValue) {
                               if (newValue != null) {
                                 context.setLocale(Locale(newValue));
@@ -151,13 +153,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             selectedItemBuilder: (BuildContext context) {
                               return ['en', 'ar'].map((lang) {
-                                return Align(
-                                  alignment: Alignment.centerRight,
-                                  child: CustomText(
-                                    text: lang == 'en' ? 'English' : 'عربية',
-                                    size: 14,
-                                    weight: FontWeight.w500,
-                                  ),
+                                return CustomText(
+                                  text: lang == 'en' ? 'English' : 'عربية',
+                                  size: 14,
+                                  weight: FontWeight.w500,
                                 );
                               }).toList();
                             },
@@ -200,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: tr("Privacy Policy"),
+                        text: tr("privacy_policy"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -216,7 +215,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: tr("Settings"),
+                        text: tr("setting"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -240,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: tr("Notifications"),
+                    text: tr("notifications"),
                     size: 16,
                     weight: FontWeight.w500,
                   ),
@@ -250,7 +249,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.notifications_none_rounded, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: tr("Push Notifications"),
+                        text: tr("push_notifications"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -286,7 +285,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.notifications_none_rounded, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: tr("Promotional Notifications"),
+                        text: tr("promotional_notifications"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -334,7 +333,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: tr("More"),
+                    text: tr("more"),
                     size: 16,
                     weight: FontWeight.w500,
                   ),
@@ -344,24 +343,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.info_outline, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: tr("Help Center"),
+                        text: tr("help_center"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
                     ],
                   ),
                   SizedBox(height: responsiveHeight(context, 12)),
-                  Row(
-                    children: [
-                      Icon(Icons.logout, size: 20, color: Colors.red),
-                      SizedBox(width: responsiveWidth(context, 12)),
-                      CustomText(
-                        text: tr("Log Out"),
-                        size: 14,
-                        weight: FontWeight.w500,
-                        color: Colors.red,
-                      ),
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OnboardingScreen(),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.logout, size: 20, color: Colors.red),
+                        SizedBox(width: responsiveWidth(context, 12)),
+                        CustomText(
+                          text: tr("log_out"),
+                          size: 14,
+                          weight: FontWeight.w500,
+                          color: Colors.red,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

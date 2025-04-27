@@ -64,16 +64,14 @@ class _GetLocationScreenState extends State<GetLocationScreen> {
                         horizontal: responsiveWidth(context, 50),
                       ),
                       child: CustomText(
-                        text: tr(
-                          "to_continue_let_your_device_turn_on_location",
-                        ),
+                        text: tr("device_turn_on_location"),
                         size: 16,
                         weight: FontWeight.w400,
                       ),
                     ),
                     SizedBox(height: responsiveHeight(context, 40)),
                     CustomGradientButton(
-                      text: tr("yes_turn_it_on"),
+                      text: tr("yes_turn_on"),
                       onTap: () {
                         Navigator.pushReplacement(
                           context,
@@ -88,7 +86,14 @@ class _GetLocationScreenState extends State<GetLocationScreen> {
                       text: tr("cancel"),
                       textColor: AppColors.dark_grey,
                       colors: [AppColors.grey, AppColors.grey],
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
                     ),
                     Spacer(flex: 4),
                   ],

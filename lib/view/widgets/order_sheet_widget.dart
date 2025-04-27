@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/util/colors.dart';
@@ -32,24 +33,24 @@ class OrderSheetWidget extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(
             bottom: responsiveHeight(context, 12),
-            top: responsiveHeight(context, 20),
+            top: responsiveHeight(context, 12),
             left: responsiveWidth(context, 12),
             right: responsiveWidth(context, 12),
           ),
           child: Column(
             children: [
-              buildOrderDetails(title: "Sub-Total", price: "100"),
-              buildOrderDetails(title: "Sub-Total", price: "100"),
-              buildOrderDetails(title: "Sub-Total", price: "100"),
+              buildOrderDetails(title: tr("sub_total"), price: "100"),
+              buildOrderDetails(title: tr("sub_total"), price: "100"),
+              buildOrderDetails(title: tr("sub_total"), price: "100"),
               buildOrderDetails(
-                title: "Sub-Total",
+                title: tr("sub_total"),
                 price: "100",
                 isBold: true,
                 size: 18,
               ),
               SizedBox(height: responsiveHeight(context, 10)),
               ButtonWidget(
-                dataName: "Place My Order",
+                dataName: tr("place_my_order"),
                 onTap: onTap,
                 colors: AppColors.green,
                 backgroundColor: Colors.white,
