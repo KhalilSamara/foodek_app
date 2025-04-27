@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/util/responsive.dart';
@@ -59,7 +60,7 @@ class ConfirmPassScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "Reset Password",
+                          tr("reset_password"),
                           style: TextStyle(
                             color: Color(0xFF111827),
                             fontFamily: "Inter",
@@ -71,7 +72,7 @@ class ConfirmPassScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Want to try with my current password?",
+                              tr("want_to_try_with_my_current_password"),
                               style: TextStyle(fontSize: 11.sp),
                             ),
                             TextButton(
@@ -84,7 +85,7 @@ class ConfirmPassScreen extends StatelessWidget {
                                 );
                               },
                               child: Text(
-                                "Login",
+                                tr("login"),
                                 style: TextStyle(
                                   fontSize: 11.sp,
                                   color: Color(0xFF25AE4B),
@@ -97,20 +98,20 @@ class ConfirmPassScreen extends StatelessWidget {
                         TextFieldWidget(
                           textEditingController: newPassTextEditingController,
                           obscureText: true,
-                          label: "New Password",
-                          hintText: "Enter a new password",
+                          label: tr("new_password"),
+                          hintText: tr("new_password"),
                         ),
                         SizedBox(height: 20),
                         TextFieldWidget(
                           textEditingController:
                               confirmNewPassTextEditingController,
                           obscureText: true,
-                          label: "Confirm New Password",
-                          hintText: "Confirm your password",
+                          label: tr("confirm_new_password"),
+                          hintText: tr("confirm_new_password"),
                         ),
                         SizedBox(height: 25),
                         ButtonWidget(
-                          dataName: "Update Password",
+                          dataName: tr("update_password"),
                           colors: Colors.white,
                           onTap: () {
                             showSuccessDialog(context);

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:foodek_app/view/screens/confirm_password.dart';
 import 'package:pinput/pinput.dart';
@@ -21,7 +22,9 @@ void showVerifyDialog(BuildContext context) {
               Image.asset("assets/images/sent_message.png", height: 153),
               SizedBox(height: 16),
               Text(
-                "A 4-digit code has been sent to your email.\nPlease enter it to verify.",
+                tr(
+                  "a_4_digit_code_has_been_sent_to_your_email_please_enter_it_to_verify",
+                ),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Color(0xFF6C7278)),
               ),
@@ -47,7 +50,7 @@ void showVerifyDialog(BuildContext context) {
               SizedBox(height: 26),
 
               ButtonWidget(
-                dataName: "Verify",
+                dataName: tr("verify"),
                 colors: Colors.white,
                 onTap: () {
                   Navigator.pushReplacement(

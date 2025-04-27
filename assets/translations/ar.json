@@ -35,7 +35,6 @@
   "confirm_new_password": "تأكيد كلمة المرور الجديدة",
   "update_password": "تحديث كلمة المرور",
   "congratulations": "تهانينا!",
-  "password_reset_succesfuly": "تمت إعادة تعيين كلمة المرور بنجاح",
   "current_location": "الموقع الحالي",
   "search_menu_restaurant_or_etc": "ابحث في القائمة أو المطاعم أو غيرها",
   "all": "الكل",
@@ -143,5 +142,9 @@
   "turn_on_your_location": "قم بتشغيل موقعك",
   "device_turn_on_location": "للمتابعة دع جهازك يقوم بتشغيل الموقع",
   "yes_turn_on": "نعم قم بتشغيله",
-  "cancel": "إلغاء"
+  "cancel": "إلغاء",
+  "back_to": "العودة إلى صفحة ",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "password_reset_successfully": "تمت إعادة تعيين كلمة المرور بنجاح",
+  "ok": "اكمل"
 }

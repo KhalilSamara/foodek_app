@@ -59,7 +59,7 @@ class ResetPassScreen extends StatelessWidget {
                             ),
                             RichText(
                               text: TextSpan(
-                                text: "Back to",
+                                text: tr("back_to"),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Color(0xFF111827),
@@ -67,7 +67,7 @@ class ResetPassScreen extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     mouseCursor: MouseCursor.defer,
-                                    text: " Login",
+                                    text: tr("login"),
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       color: Color(0xFF25AE4B),
@@ -86,7 +86,10 @@ class ResetPassScreen extends StatelessWidget {
                                           },
                                   ),
                                   TextSpan(
-                                    text: " page?",
+                                    text:
+                                        context.locale.languageCode == "en"
+                                            ? " page?"
+                                            : "؟",
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       color: Color(0xFF111827),
@@ -98,7 +101,7 @@ class ResetPassScreen extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          "Reset Password",
+                          tr("reset_password"),
                           style: TextStyle(
                             color: Color(0xFF111827),
                             fontFamily: "Inter",

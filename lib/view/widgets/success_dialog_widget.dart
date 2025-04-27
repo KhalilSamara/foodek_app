@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/view/screens/login.dart';
@@ -41,7 +42,7 @@ void showSuccessDialog(BuildContext context) {
                 ),
                 SizedBox(height: 30),
                 Text(
-                  "Congratulations!",
+                  tr("congratulations"),
                   style: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.w700,
@@ -50,7 +51,7 @@ void showSuccessDialog(BuildContext context) {
                 ),
                 SizedBox(height: 12),
                 Text(
-                  "Password reset successfully",
+                  tr("password_reset_successfully"),
                   style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w400,
@@ -69,7 +70,7 @@ void showSuccessDialog(BuildContext context) {
                     backgroundColor: Colors.transparent,
                   ),
                   child: Text(
-                    "OK",
+                    tr("ok"),
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w400,

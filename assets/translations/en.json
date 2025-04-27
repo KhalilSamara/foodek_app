@@ -35,7 +35,6 @@
   "confirm_new_password": "Confirm new password",
   "update_password": "Update password",
   "congratulations": "Congratulations",
-  "password_reset_succesfuly": "Password reset succesfuly",
   "current_location": "Current location",
   "search_menu_restaurant_or_etc": "Search menu restaurant or etc",
   "all": "All",
@@ -143,5 +142,9 @@
   "turn_on_your_location": "Turn On Your Location",
   "device_turn_on_location": "To Continue Let Your Device Turn On Location",
   "yes_turn_on": "Yes Turn It On",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "back_to": "Back to ",
+  "reset_password": "Reset Password",
+  "password_reset_successfully": "Password reset successfully",
+  "ok": "OK"
 }

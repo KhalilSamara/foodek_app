@@ -51,7 +51,6 @@ class CodegenLoader extends AssetLoader{
   "confirm_new_password": "تأكيد كلمة المرور الجديدة",
   "update_password": "تحديث كلمة المرور",
   "congratulations": "تهانينا!",
-  "password_reset_succesfuly": "تمت إعادة تعيين كلمة المرور بنجاح",
   "current_location": "الموقع الحالي",
   "search_menu_restaurant_or_etc": "ابحث في القائمة أو المطاعم أو غيرها",
   "all": "الكل",
@@ -159,7 +158,11 @@ class CodegenLoader extends AssetLoader{
   "turn_on_your_location": "قم بتشغيل موقعك",
   "device_turn_on_location": "للمتابعة دع جهازك يقوم بتشغيل الموقع",
   "yes_turn_on": "نعم قم بتشغيله",
-  "cancel": "إلغاء"
+  "cancel": "إلغاء",
+  "back_to": "العودة إلى صفحة ",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "password_reset_successfully": "تمت إعادة تعيين كلمة المرور بنجاح",
+  "ok": "اكمل"
 };
 static const Map<String,dynamic> _en = {
   "Continue": "Continue",
@@ -198,7 +201,6 @@ static const Map<String,dynamic> _en = {
   "confirm_new_password": "Confirm new password",
   "update_password": "Update password",
   "congratulations": "Congratulations",
-  "password_reset_succesfuly": "Password reset succesfuly",
   "current_location": "Current location",
   "search_menu_restaurant_or_etc": "Search menu restaurant or etc",
   "all": "All",
@@ -306,7 +308,11 @@ static const Map<String,dynamic> _en = {
   "turn_on_your_location": "Turn On Your Location",
   "device_turn_on_location": "To Continue Let Your Device Turn On Location",
   "yes_turn_on": "Yes Turn It On",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "back_to": "Back to ",
+  "reset_password": "Reset Password",
+  "password_reset_successfully": "Password reset successfully",
+  "ok": "OK"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
