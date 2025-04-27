@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/util/colors.dart';
@@ -50,7 +51,7 @@ class SearchBarWidget extends StatelessWidget {
                 onChanged: onChanged,
                 style: TextStyle(fontSize: 12, color: AppColors.grey),
                 decoration: InputDecoration(
-                  hintText: hintText ?? 'Search menu, restaurant, or etc',
+                  hintText: hintText ?? tr("search_menu_restaurant_or_etc"),
                   border: InputBorder.none,
                   isDense: true,
                   contentPadding: const EdgeInsets.symmetric(vertical: 10),

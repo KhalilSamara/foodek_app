@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -107,7 +108,9 @@ class ResetPassScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 12),
                         Text(
-                          "Enter your E-mail or phone and we'll \n send you a link to get back into \n your account ",
+                          tr(
+                            "enter_your_e_mail_or_phone_and_we_ll_send_you_a_link_to_get_back_into_your_account",
+                          ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
@@ -120,7 +123,7 @@ class ResetPassScreen extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Email",
+                            tr("email"),
                             style: TextStyle(
                               color: AppColors.dark_grey,
                               fontFamily: "Inter",
@@ -133,12 +136,12 @@ class ResetPassScreen extends StatelessWidget {
                         TextFieldWidget(
                           textEditingController: emailTextEditingController,
                           obscureText: false,
-                          label: "Email",
+                          label: tr("email"),
                           hintText: "Enter your email",
                         ),
                         SizedBox(height: 24),
                         ButtonWidget(
-                          dataName: "Send",
+                          dataName: tr("send"),
                           colors: Colors.white,
                           onTap: () {
                             showVerifyDialog(context);

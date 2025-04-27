@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/core/util/colors.dart';
@@ -39,10 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildTabs() {
     final List<String> categories = [
-      "All",
-      "🍔 Burger",
-      "🍕 Pizza",
-      "🌭 Sandwich",
+      tr("all"),
+      "🍔 " + tr("burger"),
+      "🍕 " + tr("pizza"),
+      "🌭 " + tr("sandwich"),
       "🍝 Pasta",
       "🍣 Sushi",
       "🥗 Salad",
@@ -276,7 +277,7 @@ class _HomeScreenState extends State<HomeScreen> {
             horizontal: responsiveWidth(context, 30),
           ),
           child: CustomText(
-            text: "Top Rated",
+            text: tr("top_rated"),
             alignment: TextAlign.start,
             size: 20,
             weight: FontWeight.w600,
@@ -419,14 +420,14 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               CustomText(
-                text: "Recommended",
+                text: tr("recommend"),
                 alignment: TextAlign.start,
                 size: 16,
                 weight: FontWeight.w600,
               ),
               Spacer(),
               CustomText(
-                text: "View All",
+                text: tr("view_all"),
                 alignment: TextAlign.start,
                 size: 12,
                 weight: FontWeight.w600,

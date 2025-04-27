@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:foodek_app/view/screens/cart.dart';
 import 'package:foodek_app/view/screens/favorites.dart';
@@ -8,6 +9,8 @@ import 'package:foodek_app/view/screens/track.dart';
 import '../core/util/colors.dart';
 
 class NavigationBarScreen extends StatefulWidget {
+  const NavigationBarScreen({super.key});
+
   @override
   _NavigationBarScreenState createState() => _NavigationBarScreenState();
 }
@@ -19,8 +22,8 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     FavoritesScreen(),
-    //HistoryScreen(),
-    TrackScreen(),
+    HistoryScreen(),
+    // TrackScreen(),
     ProfileScreen(),
   ];
 
@@ -67,17 +70,17 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
               // Left side items
               Row(
                 children: [
-                  _buildNavItem(Icons.home, "Home", 0),
+                  _buildNavItem(Icons.home, tr("home"), 0),
                   SizedBox(width: 32),
-                  _buildNavItem(Icons.favorite_border, "Favorites", 1),
+                  _buildNavItem(Icons.favorite_border, tr("favorites"), 1),
                 ],
               ),
               // Right side items
               Row(
                 children: [
-                  _buildNavItem(Icons.history, "History", 2),
+                  _buildNavItem(Icons.history, tr("history"), 2),
                   SizedBox(width: 32),
-                  _buildNavItem(Icons.person, "Profile", 3),
+                  _buildNavItem(Icons.person, tr("profile"), 3),
                 ],
               ),
             ],
@@ -106,7 +109,7 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
                   (_selectedIndex == index && !_showCart)
                       ? Colors.green
                       : Colors.black54,
-              fontSize: 12,
+              fontSize: 11,
             ),
           ),
         ],

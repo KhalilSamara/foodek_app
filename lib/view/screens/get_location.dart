@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:foodek_app/core/util/colors.dart';
 import 'package:foodek_app/core/util/extension.dart';
@@ -53,7 +54,7 @@ class _GetLocationScreenState extends State<GetLocationScreen> {
                     ),
                     SizedBox(height: responsiveHeight(context, 30)),
                     CustomText(
-                      text: 'Turn On Your Location',
+                      text: tr("turn_on_your_location"),
                       size: 32,
                       weight: FontWeight.w800,
                     ),
@@ -63,15 +64,16 @@ class _GetLocationScreenState extends State<GetLocationScreen> {
                         horizontal: responsiveWidth(context, 50),
                       ),
                       child: CustomText(
-                        text:
-                            'To Continue, Let your device turn on location, which uses google’s location service',
+                        text: tr(
+                          "to_continue_let_your_device_turn_on_location",
+                        ),
                         size: 16,
                         weight: FontWeight.w400,
                       ),
                     ),
                     SizedBox(height: responsiveHeight(context, 40)),
                     CustomGradientButton(
-                      text: 'Yes, Turn It On',
+                      text: tr("yes_turn_it_on"),
                       onTap: () {
                         Navigator.pushReplacement(
                           context,
@@ -83,7 +85,7 @@ class _GetLocationScreenState extends State<GetLocationScreen> {
                     ),
                     SizedBox(height: context.screenHeight * 0.015),
                     CustomGradientButton(
-                      text: 'Cancel',
+                      text: tr("cancel"),
                       textColor: AppColors.dark_grey,
                       colors: [AppColors.grey, AppColors.grey],
                       onTap: () {},

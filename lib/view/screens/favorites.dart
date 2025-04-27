@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:foodek_app/view/widgets/appbar_widget.dart';
 import 'package:foodek_app/view/widgets/custom_text.dart';
@@ -91,7 +92,11 @@ class FavoritesScreen extends StatelessWidget {
               SizedBox(height: responsiveHeight(context, 22)),
               SearchBarWidget(),
               SizedBox(height: responsiveHeight(context, 30)),
-              CustomText(text: 'Favorites', size: 20, weight: FontWeight.w600),
+              CustomText(
+                text: tr("favorites"),
+                size: 20,
+                weight: FontWeight.w600,
+              ),
               SizedBox(height: responsiveHeight(context, 6)),
               SizedBox(
                 height: responsiveHeight(context, 585),

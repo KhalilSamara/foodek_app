@@ -95,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: "My Account",
+                    text: tr("My Account"),
                     size: 16,
                     weight: FontWeight.w500,
                   ),
@@ -115,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(width: responsiveWidth(context, 12)),
                         CustomText(
-                          text: "Personal Information",
+                          text: tr("Personal Information"),
                           size: 14,
                           weight: FontWeight.w500,
                         ),
@@ -167,7 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Align(
                                   alignment: Alignment.centerRight,
                                   child: CustomText(
-                                    text: "English",
+                                    text: tr("English"),
                                     size: 14,
                                     weight: FontWeight.w500,
                                   ),
@@ -200,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Privacy Policy",
+                        text: tr("Privacy Policy"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -216,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Settings",
+                        text: tr("Settings"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -240,7 +240,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: "Notifications",
+                    text: tr("Notifications"),
                     size: 16,
                     weight: FontWeight.w500,
                   ),
@@ -250,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.notifications_none_rounded, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Push Notifications",
+                        text: tr("Push Notifications"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -286,7 +286,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.notifications_none_rounded, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Promotional Notifications",
+                        text: tr("Promotional Notifications"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -333,14 +333,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(text: "More", size: 16, weight: FontWeight.w500),
+                  CustomText(
+                    text: tr("More"),
+                    size: 16,
+                    weight: FontWeight.w500,
+                  ),
                   SizedBox(height: responsiveHeight(context, 18)),
                   Row(
                     children: [
                       Icon(Icons.info_outline, size: 20),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Help Center",
+                        text: tr("Help Center"),
                         size: 14,
                         weight: FontWeight.w500,
                       ),
@@ -352,7 +356,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Icon(Icons.logout, size: 20, color: Colors.red),
                       SizedBox(width: responsiveWidth(context, 12)),
                       CustomText(
-                        text: "Log Out",
+                        text: tr("Log Out"),
                         size: 14,
                         weight: FontWeight.w500,
                         color: Colors.red,
@@ -383,7 +387,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: 'Username',
+                    text: tr('Username'),
                     color: AppColors.dark_grey,
                     weight: FontWeight.w500,
                     size: 12,
@@ -397,7 +401,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: 9),
                   CustomText(
-                    text: 'Email',
+                    text: tr('Email'),
                     color: AppColors.dark_grey,
                     weight: FontWeight.w500,
                     size: 12,
@@ -411,7 +415,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: 9),
                   CustomText(
-                    text: 'Phone Number',
+                    text: tr('Phone Number'),
                     color: AppColors.dark_grey,
                     weight: FontWeight.w500,
                     size: 12,
@@ -426,7 +430,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: 9),
                   CustomText(
-                    text: 'Password',
+                    text: tr('Password'),
                     color: AppColors.dark_grey,
                     weight: FontWeight.w500,
                     size: 12,
@@ -440,7 +444,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: 9),
                   CustomText(
-                    text: 'Address',
+                    text: tr('Address'),
                     color: AppColors.dark_grey,
                     weight: FontWeight.w500,
                     size: 12,
@@ -463,7 +467,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             horizontal: responsiveWidth(context, 69),
           ),
           child: ButtonWidget(
-            dataName: "Update",
+            dataName: tr("Update"),
             colors: Colors.white,
             onTap: () {
               setState(() {

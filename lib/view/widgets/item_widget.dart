@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -131,7 +132,7 @@ class ItemWidget extends StatelessWidget {
                   child: Center(
                     child: GestureDetector(
                       child: CustomText(
-                        text: "Order Now",
+                        text: tr("order_now"),
                         size: 10,
                         weight: FontWeight.w400,
                         color: Colors.white,

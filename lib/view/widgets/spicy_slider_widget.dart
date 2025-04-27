@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/core/util/responsive.dart';
+import 'package:easy_localization/easy_localization.dart'; // Assuming you're using easy_localization
 
 import '../../core/util/colors.dart';
 import 'custom_text.dart';
@@ -29,7 +30,7 @@ class _SpicySliderState extends State<SpicySlider> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: CustomText(
-                  text: "Spicy",
+                  text: tr("spicy"),
                   color: AppColors.dark_grey,
                   size: 12.sp,
                   weight: FontWeight.w500,
@@ -41,11 +42,11 @@ class _SpicySliderState extends State<SpicySlider> {
                   activeTrackColor: Colors.red,
                   inactiveTrackColor: Colors.grey.shade300,
                   thumbColor: Colors.red,
-                  overlayColor: Colors.red.withValues(alpha: 0.2),
+                  overlayColor: Colors.red.withOpacity(0.2),
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8),
                 ),
                 child: Slider(
-                  label: 'Spicy',
+                  label: tr("spicy"),
                   value: _sliderValue,
                   min: 0,
                   max: 1,
@@ -64,13 +65,13 @@ class _SpicySliderState extends State<SpicySlider> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      text: "Mild",
+                      text: tr("mild"),
                       size: 12.sp,
                       color: Colors.green,
                       weight: FontWeight.w500,
                     ),
                     CustomText(
-                      text: "Hot",
+                      text: tr("hot"),
                       size: 12.sp,
                       color: Colors.red,
                       weight: FontWeight.w500,

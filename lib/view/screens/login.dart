@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/view/screens/reset_password.dart';
@@ -66,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         SizedBox(height: 8.h),
                         Text(
-                          "Login",
+                          tr("login"),
                           style: TextStyle(
                             color: const Color(0xFF111827),
                             fontFamily: "Inter",
@@ -80,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have an account?",
+                              tr("don_t_have_an_account"),
                               style: TextStyle(fontSize: 12.sp),
                             ),
                             TextButton(
@@ -93,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                               },
                               child: Text(
-                                "Sign Up",
+                                tr("sign_up"),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: const Color(0xFF25AE4B),
@@ -109,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textEditingController: emailTextEditingController,
                           hintText: "demo@example.com",
                           obscureText: false,
-                          label: "Email",
+                          label: tr("email"),
                         ),
                         SizedBox(height: 25.h),
 
@@ -118,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textEditingController: passwordTextEditingController,
                           hintText: "Enter Your Password",
                           obscureText: true,
-                          label: "Password",
+                          label: tr("password"),
                           suffixIcon: IconButton(
                             onPressed: () {},
                             icon: const Icon(Icons.visibility_off),
@@ -138,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                             ),
                             Text(
-                              "Remember me",
+                              tr("remember_me"),
                               style: TextStyle(fontSize: 12.sp),
                             ),
                             const Spacer(),
@@ -153,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                               },
                               child: Text(
-                                "Forgot Password?",
+                                tr("forgot_password"),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: const Color(0xFF25AE4B),
@@ -166,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         // Login Button
                         ButtonWidget(
-                          dataName: "Login",
+                          dataName: tr("log_in"),
                           onTap: () {
                             Navigator.push(
                               context,
@@ -192,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 10.w),
                               child: Text(
-                                "Or",
+                                tr("or"),
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w700,
@@ -212,17 +213,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         // Social Login Buttons
                         _buildContinueWithButton(
-                          title: "Continue with Google",
+                          title: tr("continue_with_google"),
                           path: "assets/images/google_icon.png",
                         ),
                         SizedBox(height: 10.h),
                         _buildContinueWithButton(
-                          title: "Continue with Facebook",
+                          title: tr("continue_with_facebook"),
                           path: "assets/images/facebook_icon.png",
                         ),
                         SizedBox(height: 10.h),
                         _buildContinueWithButton(
-                          title: "Continue with Apple",
+                          title: tr("continue_with_apple"),
                           path: "assets/images/apple_icon.png",
                         ),
                       ],

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/core/util/colors.dart';
@@ -103,7 +104,7 @@ class ItemDetailsScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: CustomText(
-                        text: "Quantity",
+                        text: tr("quantity"),
                         color: AppColors.dark_grey,
                         size: 12,
                         weight: FontWeight.w500,
@@ -122,7 +123,7 @@ class ItemDetailsScreen extends StatelessWidget {
               vertical: responsiveHeight(context, 39),
             ),
             child: ButtonWidget(
-              dataName: "Add To Cart",
+              dataName: tr("add_to_cart"),
               onTap: () {
                 Navigator.push(
                   context,

@@ -38,18 +38,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 _buildOnboardingContent(
                   'assets/images/onboarding1.png',
-                  'Welcome To Sahlah',
-                  'Enjoy A Fast And Smooth Food Delivery At Your Doorstep',
+                  tr("Welcome To Sahlah"),
+                  tr("Enjoy At Fast and Smooth Food Delivery At Your Doorstep"),
                 ),
                 _buildOnboardingContent(
                   'assets/images/onboarding2.png',
-                  'Get Delivery On Time',
-                  'Order Your Favorite Food Within The Palm Of Your Hand And The Zone Of Your Comfort',
+                  tr("Get Delivery On Time"),
+                  tr(
+                    "Order Your Favorite Food Within The Palm Of Your Hand And the Zone Of Your Comfort",
+                  ),
                 ),
                 _buildOnboardingContent(
                   'assets/images/onboarding2.png',
-                  'Choose Your Food',
-                  'Order Your Favorite Food Within The Palm Of Your Hand And The Zone Of Your Comfort',
+                  tr("Choose Your Food"),
+                  tr(
+                    "Order Your Favorite Food Within The Palm Of Your Hand And the Zone Of Your Comfort",
+                  ),
                 ),
               ],
             ),
