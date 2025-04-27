@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20.h),
+                        SizedBox(height: 16.h),
 
                         // Email Field
                         TextFieldWidget(
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             icon: const Icon(Icons.visibility_off),
                           ),
                         ),
-                        SizedBox(height: 17.h),
+                        SizedBox(height: 14.h),
 
                         // Remember Me & Forgot Password
                         Row(
@@ -163,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 16.h),
+                        SizedBox(height: 12.h),
 
                         // Login Button
                         ButtonWidget(
@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           colors: Colors.white,
                         ),
 
-                        SizedBox(height: 15.h),
+                        SizedBox(height: 10.h),
 
                         // Divider with "Or"
                         Row(

@@ -1,8 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodek_app/view/screens/home.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
 import '../widgets/bottom_widget.dart';
+import '../widgets/custom_text.dart';
 import '../widgets/text_field_widget.dart';
 import 'login.dart';
 
@@ -25,25 +29,29 @@ class SignupScreen extends StatelessWidget {
       body: Stack(
         children: [
           Image.asset(
-            "assets/images/Pattern.png",
+            "assets/images/pattern.png",
             height: responsiveHeight(context, 932),
             width: responsiveWidth(context, 430),
+            fit: BoxFit.cover,
           ),
           SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: 85),
+                SizedBox(height: responsiveHeight(context, 85)),
                 Image.asset(
                   'assets/images/logo.png',
                   height: responsiveHeight(context, 85),
                   width: responsiveWidth(context, 307),
                 ),
-                SizedBox(height: 42),
+                SizedBox(height: responsiveHeight(context, 42)),
                 Center(
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    padding: EdgeInsets.all(20),
-                    height: responsiveHeight(context, 661),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: responsiveWidth(context, 20),
+                    ),
+                    padding: EdgeInsets.all(responsiveWidth(context, 20)),
+                    height: responsiveHeight(context, 672),
                     width: responsiveWidth(context, 343),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -53,17 +61,23 @@ class SignupScreen extends StatelessWidget {
                       ],
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
+                          width: responsiveWidth(context, 24),
+                          height: responsiveHeight(context, 24),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             icon: Icon(Icons.arrow_back_sharp),
                           ),
                         ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+
                         Text(
-                          "Sign up",
+                          tr("sign_up"),
                           style: TextStyle(
                             color: Color(0xFF111827),
                             fontFamily: "Inter",
@@ -72,10 +86,9 @@ class SignupScreen extends StatelessWidget {
                           ),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Already have an account?",
+                              tr("already_have_an_account"),
                               style: TextStyle(fontSize: 12.sp),
                             ),
                             TextButton(
@@ -88,7 +101,7 @@ class SignupScreen extends StatelessWidget {
                                 );
                               },
                               child: Text(
-                                "Login",
+                                tr("login"),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Color(0xFF25AE4B),
@@ -97,63 +110,79 @@ class SignupScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20),
                         TextFieldWidget(
                           textEditingController: fullNameTextEditingController,
                           obscureText: false,
-                          label: "Full Name",
-                          hintText: "Enter Your Name",
+                          label: tr("full_name"),
+                          hintText: tr("full_name"),
                           keyboardType: TextInputType.name,
                         ),
-                        SizedBox(height: 20),
-
                         TextFieldWidget(
                           textEditingController: emailTextEditingController,
                           obscureText: false,
-                          label: "Email",
-                          hintText: "Enter Your Email",
+                          label: tr("email"),
+                          hintText: tr("email"),
                           keyboardType: TextInputType.emailAddress,
                         ),
-                        SizedBox(height: 20),
                         TextFieldWidget(
                           textEditingController: birthDateTextEditingController,
                           obscureText: false,
-                          label: "Birth of date",
-                          hintText: "Enter Your BirthDate",
+                          label: tr("date_of_birth"),
+                          hintText: tr("date_of_birth"),
                           suffixIcon: Icon(Icons.date_range_outlined),
                           keyboardType: TextInputType.datetime,
                         ),
-                        SizedBox(height: 20),
-
-                        IntlPhoneField(
-                          disableLengthCheck: true,
-                          controller: phoneTextEditingController,
-                          keyboardType: TextInputType.phone,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: 'Phone Number',
-                            hintText: "Enter Your Phone Number",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(),
-                            ),
+                        SizedBox(
+                          height: responsiveHeight(context, 80),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                text: tr("phone_number"),
+                                weight: FontWeight.w500,
+                                size: 12,
+                                color: AppColors.grey,
+                              ),
+                              SizedBox(height: responsiveHeight(context, 2)),
+                              IntlPhoneField(
+                                disableLengthCheck: true,
+                                controller: phoneTextEditingController,
+                                keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                    vertical: responsiveHeight(context, 10),
+                                    horizontal: responsiveWidth(context, 12),
+                                  ),
+                                  labelText: tr("phone_number"),
+                                  hintText: tr("phone_number"),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-
-                        SizedBox(height: 20),
-
                         TextFieldWidget(
                           textEditingController: setPassTextEditingController,
                           obscureText: true,
-                          label: "Set Password",
-                          hintText: "Set Your Password",
+                          label: tr("set_password"),
+                          hintText: tr("set_password"),
                           keyboardType: TextInputType.visiblePassword,
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: responsiveHeight(context, 24)),
                         ButtonWidget(
                           colors: Colors.white,
-                          dataName: "Register",
-                          onTap: () {},
+                          dataName: tr("register"),
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

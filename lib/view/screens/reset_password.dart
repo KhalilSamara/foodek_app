@@ -135,14 +135,14 @@ class ResetPassScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 3),
+                        SizedBox(height: responsiveHeight(context, 3)),
                         TextFieldWidget(
                           textEditingController: emailTextEditingController,
                           obscureText: false,
                           label: tr("email"),
                           hintText: "Enter your email",
                         ),
-                        SizedBox(height: 24),
+                        SizedBox(height: responsiveHeight(context, 24)),
                         ButtonWidget(
                           dataName: tr("send"),
                           colors: Colors.white,

@@ -20,7 +20,6 @@
   "continue_with_apple": "Continue with apple",
   "already_have_an_account": "Already have an account",
   "full_name": "Full name",
-  "birth_of_date": "Birth of date",
   "phone_number": "Phone number",
   "set_password": "Set password",
   "register": "Register",
@@ -146,5 +145,6 @@
   "back_to": "Back to ",
   "reset_password": "Reset Password",
   "password_reset_successfully": "Password reset successfully",
-  "ok": "OK"
+  "ok": "OK",
+  "date_of_birth": "Date of Birth"
 }

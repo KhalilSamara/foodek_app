@@ -20,7 +20,6 @@
   "continue_with_apple": "المتابعة باستخدام أبل",
   "already_have_an_account": "هل لديك حساب بالفعل؟",
   "full_name": "الاسم الكامل",
-  "birth_of_date": "تاريخ الميلاد",
   "phone_number": "رقم الهاتف",
   "set_password": "تعيين كلمة المرور",
   "register": "تسجيل",
@@ -146,5 +145,6 @@
   "back_to": "العودة إلى صفحة ",
   "reset_password": "إعادة تعيين كلمة المرور",
   "password_reset_successfully": "تمت إعادة تعيين كلمة المرور بنجاح",
-  "ok": "اكمل"
+  "ok": "اكمل",
+  "date_of_birth": "تاريخ الميلاد"
 }

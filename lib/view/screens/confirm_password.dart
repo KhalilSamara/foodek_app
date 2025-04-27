@@ -28,7 +28,7 @@ class ConfirmPassScreen extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 85),
+                SizedBox(height: responsiveHeight(context, 85)),
                 Image.asset(
                   'assets/images/logo.png',
                   height: responsiveHeight(context, 85),
@@ -58,7 +58,7 @@ class ConfirmPassScreen extends StatelessWidget {
                             icon: Icon(Icons.arrow_back_sharp),
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: responsiveHeight(context, 8)),
                         Text(
                           tr("reset_password"),
                           style: TextStyle(
@@ -94,14 +94,14 @@ class ConfirmPassScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 13),
+                        SizedBox(height: responsiveHeight(context, 2)),
                         TextFieldWidget(
                           textEditingController: newPassTextEditingController,
                           obscureText: true,
                           label: tr("new_password"),
                           hintText: tr("new_password"),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: responsiveHeight(context, 16)),
                         TextFieldWidget(
                           textEditingController:
                               confirmNewPassTextEditingController,
@@ -109,7 +109,7 @@ class ConfirmPassScreen extends StatelessWidget {
                           label: tr("confirm_new_password"),
                           hintText: tr("confirm_new_password"),
                         ),
-                        SizedBox(height: 25),
+                        SizedBox(height: responsiveHeight(context, 20)),
                         ButtonWidget(
                           dataName: tr("update_password"),
                           colors: Colors.white,
