@@ -7,7 +7,7 @@ import '../../core/util/responsive.dart';
 import '../widgets/bottom_widget.dart';
 import '../widgets/otp_widget.dart';
 import '../widgets/text_field_widget.dart';
-import 'login.dart';
+import '../../features/login/presentation/screen/login.dart';
 
 class ResetPassScreen extends StatelessWidget {
   const ResetPassScreen({super.key});

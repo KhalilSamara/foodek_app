@@ -1,6 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 // ignore_for_file: constant_identifier_names
+// dart run easy_localization:generate -S "assets/translations" -O "lib/translations"
 
 abstract class LocaleKeys {
   static const Continue = 'Continue';

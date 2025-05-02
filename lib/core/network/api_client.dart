@@ -82,4 +82,61 @@ class ApiClient<T> {
   static deleteData({required String endpoint}) async {
     await http.delete(Uri.parse("${ConstValues.baseUrl}$endpoint"));
   }
+
+  Future<List> getBanks() async {
+    try {
+      var response = await http.get(
+        Uri.parse('${ConstValues.baseUrl}api/ar/banks'),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> responseBody = jsonDecode(response.body);
+
+        // Extract the 'name' field for each car maker
+        if (responseBody['data'] != null &&
+            responseBody['data']['items'] != null) {
+          List banks = responseBody['data']['items'];
+          print('Banks: $banks');
+          return banks;
+        } else {
+          throw Exception('Unexpected response format for banks');
+        }
+      } else {
+        throw Exception('Failed to load banks: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Error during API call: $e');
+    }
+  }
+
+  Future<String?> login(String email, String password) async {
+    var url = '${ConstValues.baseUrl}/api/login';
+    Map<String, dynamic> requestBody = {
+      'email': email,
+      'phoneNumber': password,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: json.encode(requestBody),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> responseBody = jsonDecode(response.body);
+        String newToken = responseBody["token"];
+        // await prefs.setString('token', newToken);
+        print('New token saved: $newToken');
+        return newToken;
+      } else {
+        throw Exception('Failed to login: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Error during API call: $e');
+    }
+  }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodek_app/core/util/extension.dart';
 import 'package:foodek_app/core/util/responsive.dart';
 import 'package:foodek_app/view/screens/get_location.dart';
-import 'package:foodek_app/view/screens/login.dart';
+import 'package:foodek_app/features/login/presentation/screen/login.dart';
 import 'package:foodek_app/view/widgets/custom_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../core/util/colors.dart';

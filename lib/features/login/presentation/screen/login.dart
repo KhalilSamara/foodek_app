@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/view/screens/reset_password.dart';
 import 'package:foodek_app/view/screens/signup.dart';
-import '../navigation_bar.dart';
-import '../widgets/bottom_widget.dart';
-import '../widgets/text_field_widget.dart';
+import '../../../../core/network/api_client.dart';
+import '../../../../view/navigation_bar.dart';
+import '../../../../view/widgets/bottom_widget.dart';
+import '../../../../view/widgets/text_field_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -168,13 +169,32 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Login Button
                         ButtonWidget(
                           dataName: tr("log_in"),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NavigationBarScreen(),
-                              ),
-                            );
+                          onTap: () async {
+                            try {
+                              String email =
+                                  emailTextEditingController.text.trim();
+                              String password =
+                                  passwordTextEditingController.text.trim();
+
+                              String? token = await ApiClient().login(
+                                email,
+                                password,
+                              );
+
+                              if (token != null) {
+                                print('Login successful. Token: $token');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NavigationBarScreen(),
+                                  ),
+                                );
+                              } else {
+                                print('Login failed: token is null');
+                              }
+                            } catch (e) {
+                              print('Login error: $e');
+                            }
                           },
                           colors: Colors.white,
                         ),

@@ -5,7 +5,7 @@ import '../../core/util/responsive.dart';
 import '../widgets/bottom_widget.dart';
 import '../widgets/success_dialog_widget.dart';
 import '../widgets/text_field_widget.dart';
-import 'login.dart';
+import '../../features/login/presentation/screen/login.dart';
 
 class ConfirmPassScreen extends StatelessWidget {
   const ConfirmPassScreen({super.key});

@@ -8,7 +8,7 @@ import '../../core/util/responsive.dart';
 import '../widgets/bottom_widget.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/text_field_widget.dart';
-import 'login.dart';
+import '../../features/login/presentation/screen/login.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
