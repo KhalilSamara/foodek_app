@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/network/api_client.dart';
 import '../../core/util/colors.dart';
 import '../../core/util/responsive.dart';
 import '../widgets/bottom_widget.dart';
@@ -146,8 +147,27 @@ class ResetPassScreen extends StatelessWidget {
                         ButtonWidget(
                           dataName: tr("send"),
                           colors: Colors.white,
-                          onTap: () {
-                            showVerifyDialog(context);
+                          onTap: () async {
+                            try {
+                              Map<String, dynamic>? response = await ApiClient()
+                                  .sendOTP(
+                                    email:
+                                        emailTextEditingController.text.trim(),
+                                  );
+                              print('Code: ${response?['data']}');
+
+                              if (response?['status'] != false) {
+                                print('Got OTP. Response: $response');
+                                showVerifyDialog(
+                                  context,
+                                  response!['data'].toString(),
+                                );
+                              } else {
+                                print('Send OTP failed');
+                              }
+                            } catch (e) {
+                              print('Response error: $e');
+                            }
                           },
                         ),
                       ],

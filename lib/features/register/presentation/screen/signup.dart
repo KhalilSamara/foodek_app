@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/view/screens/home.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import '../../core/util/colors.dart';
-import '../../core/util/responsive.dart';
-import '../widgets/bottom_widget.dart';
-import '../widgets/custom_text.dart';
-import '../widgets/text_field_widget.dart';
-import '../../features/login/presentation/screen/login.dart';
+import '../../../../core/network/api_client.dart';
+import '../../../../core/util/colors.dart';
+import '../../../../core/util/responsive.dart';
+import '../../../../view/navigation_bar.dart';
+import '../../../../view/widgets/bottom_widget.dart';
+import '../../../../view/widgets/custom_text.dart';
+import '../../../../view/widgets/text_field_widget.dart';
+import '../../../login/presentation/screen/login.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -175,13 +177,49 @@ class SignupScreen extends StatelessWidget {
                         ButtonWidget(
                           colors: Colors.white,
                           dataName: tr("register"),
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ),
-                            );
+                          onTap: () async {
+                            try {
+                              String name =
+                                  fullNameTextEditingController.text.trim();
+                              String email =
+                                  emailTextEditingController.text.trim();
+                              String dob =
+                                  birthDateTextEditingController.text.trim();
+                              String number =
+                                  phoneTextEditingController.text.trim();
+                              String password =
+                                  setPassTextEditingController.text.trim();
+
+                              print(
+                                "Request:\n$name\n$email\n$dob\n$number\n$password",
+                              );
+
+                              Map<String, dynamic>?
+                              response = await ApiClient().signup(
+                                name: fullNameTextEditingController.text.trim(),
+                                email: emailTextEditingController.text.trim(),
+                                dob: birthDateTextEditingController.text.trim(),
+                                number: phoneTextEditingController.text.trim(),
+                                password:
+                                    setPassTextEditingController.text.trim(),
+                              );
+
+                              if (response != null) {
+                                print(
+                                  'Registration successful. Response: $response',
+                                );
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NavigationBarScreen(),
+                                  ),
+                                );
+                              } else {
+                                print('Registration failed');
+                              }
+                            } catch (e) {
+                              print('Registration error: $e');
+                            }
                           },
                         ),
                       ],

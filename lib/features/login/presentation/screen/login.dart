@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodek_app/view/screens/reset_password.dart';
-import 'package:foodek_app/view/screens/signup.dart';
+import 'package:foodek_app/features/register/presentation/screen/signup.dart';
 import '../../../../core/network/api_client.dart';
 import '../../../../view/navigation_bar.dart';
 import '../../../../view/widgets/bottom_widget.dart';

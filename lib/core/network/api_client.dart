@@ -139,4 +139,57 @@ class ApiClient<T> {
       throw Exception('Error during API call: $e');
     }
   }
+
+  Future<Map<String, dynamic>?> signup({
+    required String name,
+    required String email,
+    required String dob,
+    required String number,
+    required String password,
+  }) async {
+    try {
+      final response = await http.post(
+        Uri.parse('${ConstValues.baseUrl}/api/login'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode({
+          "name": name,
+          "email": email,
+          "birth_date": dob,
+          "phone_number": number,
+          "password": password,
+        }),
+      );
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        return {"isSuccess": false, "message": "reset password failed"};
+      }
+    } catch (e) {
+      return {"isSuccess": false, "message": "Error: $e"};
+    }
+  }
+
+  Future<Map<String, dynamic>?> sendOTP({required String email}) async {
+    try {
+      final response = await http.post(
+        Uri.parse('${ConstValues.baseUrl}api/sendOTP'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode({"email": email}),
+      );
+      print("R: ${response.body}");
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        return {"isSuccess": false, "message": "Failed to send OTP"};
+      }
+    } catch (e) {
+      return {"isSuccess": false, "message": "Error: $e"};
+    }
+  }
 }
