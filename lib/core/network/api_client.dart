@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import '../const/const_values.dart';
+import '../util/secure_storage_helper.dart';
 
 class ApiClient<T> {
   static Future<List<T>> getDataList<T>({
@@ -110,11 +109,13 @@ class ApiClient<T> {
   }
 
   Future<String?> login(String email, String password) async {
-    var url = '${ConstValues.baseUrl}/api/login';
+    var url = '${ConstValues.baseUrl}api/login';
     Map<String, dynamic> requestBody = {
-      'email': email,
-      'phoneNumber': password,
+      'email': email.trim(),
+      'password': password.trim(),
     };
+
+    print('Sent Login\nemail:$email\npassword:$password');
 
     try {
       final response = await http.post(
@@ -126,17 +127,29 @@ class ApiClient<T> {
         body: json.encode(requestBody),
       );
 
-      if (response.statusCode == 200) {
-        Map<String, dynamic> responseBody = jsonDecode(response.body);
-        String newToken = responseBody["token"];
-        // await prefs.setString('token', newToken);
+      final responseBody = jsonDecode(response.body);
+      print("Response: $responseBody");
+
+      if (response.statusCode == 200 &&
+          responseBody['status'] == true &&
+          responseBody['data'] != null &&
+          responseBody['data']['token'] != null) {
+        String newToken = responseBody['data']['token'];
+
+        await SecureStorageHelper.instance.savePrefString(
+          key: 'auth_token',
+          value: newToken,
+        );
+
         print('New token saved: $newToken');
         return newToken;
       } else {
-        throw Exception('Failed to login: ${response.statusCode}');
+        print('Login failed. Message: ${responseBody['message']}');
+        return null;
       }
     } catch (e) {
-      throw Exception('Error during API call: $e');
+      print('Error during API call: $e');
+      return null;
     }
   }
 
@@ -149,7 +162,7 @@ class ApiClient<T> {
   }) async {
     try {
       final response = await http.post(
-        Uri.parse('${ConstValues.baseUrl}/api/login'),
+        Uri.parse('${ConstValues.baseUrl}api/register'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -162,13 +175,18 @@ class ApiClient<T> {
           "password": password,
         }),
       );
-      if (response.statusCode == 200) {
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return jsonDecode(response.body);
       } else {
-        return {"isSuccess": false, "message": "reset password failed"};
+        print(response.body);
+        return {
+          "status": false,
+          "message": "Registration failed. Code: ${response.statusCode}",
+        };
       }
     } catch (e) {
-      return {"isSuccess": false, "message": "Error: $e"};
+      return {"status": false, "message": "Error: $e"};
     }
   }
 
@@ -182,7 +200,31 @@ class ApiClient<T> {
         },
         body: jsonEncode({"email": email}),
       );
-      print("R: ${response.body}");
+      print("Send OTP Response: ${response.body}");
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        return {"isSuccess": false, "message": "Failed to send OTP"};
+      }
+    } catch (e) {
+      return {"isSuccess": false, "message": "Error: $e"};
+    }
+  }
+
+  Future<Map<String, dynamic>?> verifyOTP({
+    required String email,
+    required String otp,
+  }) async {
+    try {
+      final response = await http.post(
+        Uri.parse('${ConstValues.baseUrl}api/verify'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode({"email": email, "otp": otp}),
+      );
+      print("Send OTP Response: ${response.body}");
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {

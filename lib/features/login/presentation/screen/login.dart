@@ -183,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                               if (token != null) {
                                 print('Login successful. Token: $token');
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => NavigationBarScreen(),
@@ -191,6 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                               } else {
                                 print('Login failed: token is null');
+                                // Optional: show a snackbar or dialog here
                               }
                             } catch (e) {
                               print('Login error: $e');

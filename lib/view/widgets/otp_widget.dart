@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-
 import '../screens/confirm_password.dart';
 import 'bottom_widget.dart';
 
-void showVerifyDialog(BuildContext context, String otp) {
+void showVerifyDialog(BuildContext context) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -61,19 +60,12 @@ void showVerifyDialog(BuildContext context, String otp) {
                     dataName: tr("verify"),
                     colors: Colors.white,
                     onTap: () {
-                      if (userOtp == otp) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ConfirmPassScreen(),
-                          ),
-                        );
-                      } else {
-                        print("Not Same Otp");
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(tr("invalid_otp"))),
-                        );
-                      }
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ConfirmPassScreen(),
+                        ),
+                      );
                     },
                   ),
                   SizedBox(height: 15),

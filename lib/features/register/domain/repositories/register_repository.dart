@@ -1,5 +1,5 @@
 import '../entity/register_entity.dart';
 
 abstract class RegisterRepository {
-  Future<List<RegisterEntity>> register();
+  Future<RegisterEntity> signup({required Map<String, dynamic> body});
 }

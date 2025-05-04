@@ -1,30 +1,52 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodek_app/view/screens/home.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../core/network/api_client.dart';
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/responsive.dart';
+import '../../../../core/util/secure_storage_helper.dart';
 import '../../../../view/navigation_bar.dart';
 import '../../../../view/widgets/bottom_widget.dart';
 import '../../../../view/widgets/custom_text.dart';
 import '../../../../view/widgets/text_field_widget.dart';
 import '../../../login/presentation/screen/login.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
   @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+TextEditingController nameController = TextEditingController();
+TextEditingController emailController = TextEditingController();
+TextEditingController dobController = TextEditingController();
+TextEditingController phoneTextEditingController = TextEditingController();
+TextEditingController setPassTextEditingController = TextEditingController();
+
+class _SignupScreenState extends State<SignupScreen> {
+  @override
   Widget build(BuildContext context) {
-    TextEditingController fullNameTextEditingController =
-        TextEditingController();
-    TextEditingController emailTextEditingController = TextEditingController();
-    TextEditingController birthDateTextEditingController =
-        TextEditingController();
-    TextEditingController phoneTextEditingController = TextEditingController();
-    TextEditingController setPassTextEditingController =
-        TextEditingController();
+    @override
+    void initState() {
+      super.initState();
+      nameController = TextEditingController();
+      emailController = TextEditingController();
+      dobController = TextEditingController();
+      phoneTextEditingController = TextEditingController();
+      setPassTextEditingController = TextEditingController();
+    }
+
+    @override
+    void dispose() {
+      nameController.dispose();
+      emailController.dispose();
+      dobController.dispose();
+      phoneTextEditingController.dispose();
+      setPassTextEditingController.dispose();
+      super.dispose();
+    }
 
     return Scaffold(
       backgroundColor: Color(0xFF25AE4B),
@@ -113,27 +135,50 @@ class SignupScreen extends StatelessWidget {
                           ],
                         ),
                         TextFieldWidget(
-                          textEditingController: fullNameTextEditingController,
+                          textEditingController: nameController,
                           obscureText: false,
                           label: tr("full_name"),
                           hintText: tr("full_name"),
                           keyboardType: TextInputType.name,
                         ),
                         TextFieldWidget(
-                          textEditingController: emailTextEditingController,
+                          textEditingController: emailController,
                           obscureText: false,
                           label: tr("email"),
                           hintText: tr("email"),
                           keyboardType: TextInputType.emailAddress,
                         ),
-                        TextFieldWidget(
-                          textEditingController: birthDateTextEditingController,
-                          obscureText: false,
-                          label: tr("date_of_birth"),
-                          hintText: tr("date_of_birth"),
-                          suffixIcon: Icon(Icons.date_range_outlined),
-                          keyboardType: TextInputType.datetime,
+                        GestureDetector(
+                          onTap: () async {
+                            FocusScope.of(context).unfocus(); // Hide keyboard
+                            DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime(2000),
+                              firstDate: DateTime(1900),
+                              lastDate: DateTime.now(),
+                            );
+
+                            if (pickedDate != null) {
+                              String formattedDate = DateFormat(
+                                'yyyy-MM-dd',
+                              ).format(pickedDate);
+                              setState(() {
+                                dobController.text = formattedDate.toString();
+                              });
+                            }
+                          },
+                          child: AbsorbPointer(
+                            child: TextFieldWidget(
+                              textEditingController: dobController,
+                              obscureText: false,
+                              label: tr("date_of_birth"),
+                              hintText: tr("date_of_birth"),
+                              suffixIcon: Icon(Icons.date_range_outlined),
+                              keyboardType: TextInputType.datetime,
+                            ),
+                          ),
                         ),
+
                         SizedBox(
                           height: responsiveHeight(context, 80),
                           child: Column(
@@ -179,12 +224,9 @@ class SignupScreen extends StatelessWidget {
                           dataName: tr("register"),
                           onTap: () async {
                             try {
-                              String name =
-                                  fullNameTextEditingController.text.trim();
-                              String email =
-                                  emailTextEditingController.text.trim();
-                              String dob =
-                                  birthDateTextEditingController.text.trim();
+                              String name = nameController.text.trim();
+                              String email = emailController.text.trim();
+                              String dob = dobController.text.trim();
                               String number =
                                   phoneTextEditingController.text.trim();
                               String password =
@@ -194,20 +236,29 @@ class SignupScreen extends StatelessWidget {
                                 "Request:\n$name\n$email\n$dob\n$number\n$password",
                               );
 
-                              Map<String, dynamic>?
-                              response = await ApiClient().signup(
-                                name: fullNameTextEditingController.text.trim(),
-                                email: emailTextEditingController.text.trim(),
-                                dob: birthDateTextEditingController.text.trim(),
-                                number: phoneTextEditingController.text.trim(),
-                                password:
-                                    setPassTextEditingController.text.trim(),
-                              );
+                              Map<String, dynamic>? response = await ApiClient()
+                                  .signup(
+                                    name: name,
+                                    email: email,
+                                    dob: dob,
+                                    number: number,
+                                    password: password,
+                                  );
 
-                              if (response != null) {
+                              if (response != null &&
+                                  response['status'] == true) {
+                                String token = response['data']['token'];
+
                                 print(
                                   'Registration successful. Response: $response',
                                 );
+
+                                await SecureStorageHelper.instance
+                                    .savePrefString(
+                                      key: 'auth_token',
+                                      value: token,
+                                    );
+
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
@@ -215,7 +266,9 @@ class SignupScreen extends StatelessWidget {
                                   ),
                                 );
                               } else {
-                                print('Registration failed');
+                                print(
+                                  'Registration failed. Message: ${response?['message']}',
+                                );
                               }
                             } catch (e) {
                               print('Registration error: $e');

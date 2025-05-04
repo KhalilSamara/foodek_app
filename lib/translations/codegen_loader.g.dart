@@ -36,7 +36,6 @@ class CodegenLoader extends AssetLoader{
   "continue_with_apple": "المتابعة باستخدام أبل",
   "already_have_an_account": "هل لديك حساب بالفعل؟",
   "full_name": "الاسم الكامل",
-  "birth_of_date": "تاريخ الميلاد",
   "phone_number": "رقم الهاتف",
   "set_password": "تعيين كلمة المرور",
   "register": "تسجيل",
@@ -162,7 +161,8 @@ class CodegenLoader extends AssetLoader{
   "back_to": "العودة إلى صفحة ",
   "reset_password": "إعادة تعيين كلمة المرور",
   "password_reset_successfully": "تمت إعادة تعيين كلمة المرور بنجاح",
-  "ok": "اكمل"
+  "ok": "اكمل",
+  "date_of_birth": "تاريخ الميلاد"
 };
 static const Map<String,dynamic> _en = {
   "Continue": "Continue",
@@ -186,7 +186,6 @@ static const Map<String,dynamic> _en = {
   "continue_with_apple": "Continue with apple",
   "already_have_an_account": "Already have an account",
   "full_name": "Full name",
-  "birth_of_date": "Birth of date",
   "phone_number": "Phone number",
   "set_password": "Set password",
   "register": "Register",
@@ -312,7 +311,8 @@ static const Map<String,dynamic> _en = {
   "back_to": "Back to ",
   "reset_password": "Reset Password",
   "password_reset_successfully": "Password reset successfully",
-  "ok": "OK"
+  "ok": "OK",
+  "date_of_birth": "Date of Birth"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

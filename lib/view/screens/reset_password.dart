@@ -158,10 +158,7 @@ class ResetPassScreen extends StatelessWidget {
 
                               if (response?['status'] != false) {
                                 print('Got OTP. Response: $response');
-                                showVerifyDialog(
-                                  context,
-                                  response!['data'].toString(),
-                                );
+                                showVerifyDialog(context);
                               } else {
                                 print('Send OTP failed');
                               }

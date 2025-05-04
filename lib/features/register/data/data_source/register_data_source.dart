@@ -3,14 +3,15 @@ import '../../domain/entity/register_entity.dart';
 import '../model/register_model.dart';
 
 abstract class RegisterDataSource {
-  Future<List<RegisterEntity>> register();
+  Future<RegisterEntity> signup({required Map<String, dynamic> body});
 }
 
 class RegisterRemoteDataSource extends RegisterDataSource {
   @override
-  Future<List<RegisterEntity>> register() async {
-    final response = await ApiClient.getDataList(
-      endpoint: "posts",
+  Future<RegisterEntity> signup({required Map<String, dynamic> body}) async {
+    final response = await ApiClient.postData(
+      endpoint: "api/register",
+      body: body,
       fromJsonT: (data) => RegisterModel.fromJson(json: data),
     );
     return response;
