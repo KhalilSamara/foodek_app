@@ -7,25 +7,29 @@ class RegisterModel extends RegisterEntity {
     required super.birth_date,
     required super.phone_number,
     required super.password,
+    this.token,
   });
 
-  factory RegisterModel.fromJson({required Map<String, dynamic> json}) {
+  final String? token;
+
+  factory RegisterModel.fromJson(Map<String, dynamic> json) {
     return RegisterModel(
       name: json['name'],
       email: json['email'],
       birth_date: json['birth_date'],
       phone_number: json['phone_number'],
       password: json['password'],
+      token: json['data']['token'],
     );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = name;
-    data['email'] = email;
-    data['birth_date'] = birth_date;
-    data['phone_number'] = phone_number;
-    data['password'] = password;
-    return data;
+    return {
+      'name': name,
+      'email': email,
+      'birth_date': birth_date,
+      'phone_number': phone_number,
+      'password': password,
+    };
   }
 }

@@ -12,7 +12,7 @@ class RegisterRemoteDataSource extends RegisterDataSource {
     final response = await ApiClient.postData(
       endpoint: "api/register",
       body: body,
-      fromJsonT: (data) => RegisterModel.fromJson(json: data),
+      fromJsonT: (data) => RegisterModel.fromJson(body),
     );
     return response;
   }

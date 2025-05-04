@@ -5,22 +5,24 @@ import '../../domain/use_case/register_use_case.dart';
 import '../state/register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  RegisterUseCase registerUseCase;
+  final RegisterUseCase registerUseCase;
 
   RegisterCubit({required this.registerUseCase}) : super(RegisterStateIntl());
 
-  register({required RegisterModel registerModel}) {
+  Future<void> register(RegisterModel registerModel) async {
     emit(RegisterStateLoading());
 
-    registerUseCase
-        .call(MapParams(map: registerModel.toJson()))
-        .then(
-          (value) {
-            emit(RegisterStateLoaded());
-          },
-          onError: (error) {
-            emit(RegisterStateError(error.toString()));
-          },
-        );
+    try {
+      final result = await registerUseCase.call(
+        MapParams(map: registerModel.toJson()),
+      );
+
+      // You might want to check some fields in the RegisterEntity if needed
+      emit(
+        RegisterStateLoaded(data: result),
+      ); // Optionally pass the result if needed
+    } catch (e) {
+      emit(RegisterStateError("Registration failed: ${e.toString()}"));
+    }
   }
 }
