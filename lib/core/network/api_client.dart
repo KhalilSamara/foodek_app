@@ -82,26 +82,24 @@ class ApiClient<T> {
     await http.delete(Uri.parse("${ConstValues.baseUrl}$endpoint"));
   }
 
-  Future<List> getBanks() async {
+  Future<List<dynamic>> getCategories() async {
     try {
-      var response = await http.get(
-        Uri.parse('${ConstValues.baseUrl}api/ar/banks'),
+      final response = await http.get(
+        Uri.parse('${ConstValues.baseUrl}api/categories'),
       );
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> responseBody = jsonDecode(response.body);
+        final Map<String, dynamic> responseBody = jsonDecode(response.body);
 
-        // Extract the 'name' field for each car maker
-        if (responseBody['data'] != null &&
-            responseBody['data']['items'] != null) {
-          List banks = responseBody['data']['items'];
-          print('Banks: $banks');
-          return banks;
+        if (responseBody['data'] != null && responseBody['data'] is List) {
+          final List<dynamic> categories = responseBody['data'];
+          print('Categories: $categories');
+          return categories;
         } else {
-          throw Exception('Unexpected response format for banks');
+          throw Exception('Unexpected response format for categories');
         }
       } else {
-        throw Exception('Failed to load banks: ${response.statusCode}');
+        throw Exception('Failed to load categories: ${response.statusCode}');
       }
     } catch (e) {
       throw Exception('Error during API call: $e');

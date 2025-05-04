@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodek_app/core/network/api_client.dart';
 import 'package:foodek_app/core/util/colors.dart';
 import 'package:foodek_app/core/util/responsive.dart';
 import 'package:foodek_app/view/widgets/appbar_widget.dart';
@@ -18,6 +19,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
+  late Future<List<dynamic>> categoriesFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    categoriesFuture = loadCategories();
+  }
+
+  Future<List<dynamic>> loadCategories() async {
+    final categories = await ApiClient().getCategories();
+    categories.insert(0, {
+      "id": 0,
+      "name_en": "All",
+      "name_ar": "الكل",
+      "image": "",
+    });
+    return categories;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +48,21 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: responsiveHeight(context, 20)),
             SearchBarWidget(),
             SizedBox(height: responsiveHeight(context, 30)),
-            buildTabs(),
+            FutureBuilder<List<dynamic>>(
+              future: categoriesFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Text('No categories found');
+                }
+
+                final categories = snapshot.data!;
+                return buildTabs(categories);
+              },
+            ),
             SizedBox(height: responsiveHeight(context, 22)),
             buildPage(),
           ],
@@ -38,16 +71,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget buildTabs() {
-    final List<String> categories = [
-      tr("all"),
-      "🍔 " + tr("burger"),
-      "🍕 " + tr("pizza"),
-      "🌭 " + tr("sandwich"),
-      "🍝 Pasta",
-      "🍣 Sushi",
-      "🥗 Salad",
-    ];
+  Widget buildTabs(List<dynamic> categories) {
+    // List<dynamic> categories = await ApiClient().getCategories();
+
+    // [
+    //   tr("all"),
+    //   "🍔 " + tr("burger"),
+    //   "🍕 " + tr("pizza"),
+    //   "🌭 " + tr("sandwich"),
+    //   "🍝 Pasta",
+    //   "🍣 Sushi",
+    //   "🥗 Salad",
+    // ];
 
     return SizedBox(
       height: 40,
@@ -56,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (context, index) {
+          final category = categories[index];
           bool isSelected = index == selectedIndex;
           return GestureDetector(
             onTap: () {
@@ -76,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: CustomText(
-                  text: categories[index],
+                  text: category["name_en"],
                   size: 18,
                   color: isSelected ? Colors.white : Colors.black,
                 ),
